@@ -639,19 +639,20 @@
                 return;
             }
             
-            const newPost = {
-                id: Date.now().toString(),
-                content,
-                author: currentUser,
-                category,
-                postType,
-                budget: budget || null,
-                deadline: deadline || null,
-                timestamp: new Date(),
-                likes: 0,
-                replies: 0,
-                shares: 0
-            };
+ const newPost = {
+    id: Date.now().toString(),
+    content,
+    author: currentUser,
+    category,
+    postType,
+    budget: budget || null,
+    deadline: deadline || null,
+    timestamp: new Date(),
+    likes: { count: 0, icon: '👍' },
+    replies: { count: 0, icon: '💬' },
+    shares: { count: 0, icon: '🔗' }
+};
+
             
             posts.unshift(newPost);
             
@@ -736,12 +737,13 @@
 }
 
         function toggleLike(postId) {
-            const post = posts.find(p => p.id === postId);
-            if (post) {
-                post.likes += 1;
-                document.getElementById(`likes-${postId}`).textContent = post.likes;
-            }
-        }
+    const post = posts.find(p => p.id === postId);
+    if (post) {
+        post.likes.count += 1;
+        document.getElementById(`likes-${postId}`).textContent = `${post.likes.icon} ${post.likes.count}`;
+    }
+}
+
 
         function formatTimeAgo(timestamp) {
             const now = new Date();
@@ -774,26 +776,27 @@
         }
 
         function renderCommissionFeed() {
-            const commissionFeed = document.getElementById('commission-feed');
-            const commissionPosts = posts.filter(post => post.postType === 'commission');
-            
-            commissionFeed.innerHTML = '';
-            
-            if (commissionPosts.length === 0) {
-                commissionFeed.innerHTML = `
-                    <div class="text-center text-gray-500 py-8">
-                        <p>No commission posts available yet.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            commissionPosts.forEach(post => {
-                const categoryData = categories.find(cat => cat.value === post.category);
-                const postElement = createPostElement(post, categoryData);
-                commissionFeed.appendChild(postElement);
-            });
-        }
+    const commissionFeed = document.getElementById('commission-feed');
+    const commissionPosts = posts.filter(post => post.postType === 'commission');
+    
+    commissionFeed.innerHTML = '';
+    
+    if (commissionPosts.length === 0) {
+        commissionFeed.innerHTML = `
+            <div class="text-center text-gray-500 py-8">
+                <p>No commission posts available yet.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    commissionPosts.forEach(post => {
+        const categoryData = categories.find(cat => cat.value === post.category);
+        const postElement = createPostElement(post, categoryData);
+        commissionFeed.appendChild(postElement);
+    });
+}
+
 
         function initializePages() {
             renderFeed();
