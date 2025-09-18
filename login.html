@@ -178,7 +178,7 @@
                 <div class="border-b border-gray-200 p-4">
                     <div class="flex space-x-3">
                         <div class="avatar">
-                            <span id="create-post-avatar">JD</span>
+                            <span id="create-post-avatar">SU</span>
                         </div>
                         <div class="flex-1 space-y-3">
                             <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
@@ -205,7 +205,7 @@
                             </div>
                             
                             <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
-                                <input type="text" id="post-budget" class="input" placeholder="Budget (e.g., $50)">
+                                <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)">
                                 <input type="date" id="post-deadline" class="input">
                             </div>
                             
@@ -270,13 +270,29 @@
 
             <!-- Other Pages (Placeholder) -->
             <div id="search-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Search</h1>
-                </div>
-                <div class="p-8 text-center text-gray-500">
-                    <p>Search functionality coming soon...</p>
-                </div>
-            </div>
+    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+        <h1 class="text-xl font-bold">Search</h1>
+    </div>
+    <div class="p-8">
+        <div class="flex justify-center mb-4">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search for posts or users..." 
+                class="border rounded p-2 w-1/2"
+            />
+            <button 
+                id="search-button" 
+                class="ml-2 bg-blue-500 text-white rounded px-4 py-2"
+            >
+                Search
+            </button>
+        </div>
+        <div id="search-results" class="text-center text-gray-500">
+            <p>No results found.</p>
+        </div>
+    </div>
+</div>
 
             <div id="notifications-page" class="page hidden">
     <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
@@ -379,44 +395,97 @@
 
         <!-- Right Sidebar -->
         <div class="right-sidebar hidden lg:block">
-            <div class="space-y-4">
-                <div class="card">
-                    <h3 class="font-semibold mb-2">Trending Categories</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-sm">
-                            <span>Computer Science</span>
-                            <span class="text-gray-500">189 posts</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span>Mathematics</span>
-                            <span class="text-gray-500">156 posts</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span>Science</span>
-                            <span class="text-gray-500">134 posts</span>
-                        </div>
-                    </div>
+    <div class="space-y-4">
+
+        <!-- Token Box -->
+        <div class="card">
+            <div class="flex justify-between items-center">
+                <span class="font-semibold">Tokens</span>
+                <span class="text-xl">100</span> <!-- Replace with dynamic token count -->
+            </div>
+            <button onclick="openModal()" class="btn-primary mt-2 w-full">Buy More Tokens</button>
+        </div>
+
+        <!-- Trending Categories -->
+        <div class="card">
+            <h3 class="font-semibold mb-2">Trending Categories</h3>
+            <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span>Computer Science</span>
+                    <span class="text-gray-500">189 posts</span>
                 </div>
-                
-                <div class="card">
-                    <h3 class="font-semibold mb-2">Quick Stats</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between">
-                            <span>Active Users</span>
-                            <span class="text-gray-500">2,847</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Today's Posts</span>
-                            <span class="text-gray-500">124</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Success Rate</span>
-                            <span class="text-gray-500">94%</span>
-                        </div>
-                    </div>
+                <div class="flex justify-between text-sm">
+                    <span>Mathematics</span>
+                    <span class="text-gray-500">156 posts</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span>Science</span>
+                    <span class="text-gray-500">134 posts</span>
                 </div>
             </div>
         </div>
+
+        <!-- Quick Stats -->
+        <div class="card">
+            <h3 class="font-semibold mb-2">Quick Stats</h3>
+            <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                    <span>Active Users</span>
+                    <span class="text-gray-500">2,847</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Today's Posts</span>
+                    <span class="text-gray-500">124</span>
+                </div>
+                <div class="flex justify-between">
+                    <span>Success Rate</span>
+                    <span class="text-gray-500">94%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Buying Tokens -->
+<div id="buy-token-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="font-semibold">Buy Tokens</h2>
+        <p>Select a payment method to buy more tokens.</p>
+        
+        <div class="space-y-4 mt-4">
+            <div>
+                <label for="token-amount" class="block text-sm">Amount of Tokens:</label>
+                <input type="number" id="token-amount" class="input" placeholder="Enter amount" min="1">
+            </div>
+            <div>
+                <label class="block text-sm">Payment Method:</label>
+                <select id="payment-method" class="select" onchange="togglePaymentFields()">
+                    <option value="gcash">Gcash</option>
+                    <option value="credit-card">Credit Card</option>
+                </select>
+            </div>
+            
+            <div id="gcash-fields" class="payment-fields">
+                <label for="gcash-number" class="block text-sm">Gcash Number:</label>
+                <input type="text" id="gcash-number" class="input" placeholder="Enter Gcash number">
+            </div>
+            
+            <div id="credit-card-fields" class="payment-fields hidden">
+                <label for="credit-card-number" class="block text-sm">Credit Card Number:</label>
+                <input type="text" id="credit-card-number" class="input" placeholder="Enter credit card number">
+                
+                <label for="card-expiry" class="block text-sm mt-2">Expiry Date:</label>
+                <input type="text" id="card-expiry" class="input" placeholder="MM/YY">
+                
+                <label for="card-cvc" class="block text-sm mt-2">CVC:</label>
+                <input type="text" id="card-cvc" class="input" placeholder="Enter CVC">
+            </div>
+            
+            <button class="btn-primary mt-4" onclick="purchaseTokens()">Purchase</button>
+        </div>
+    </div>
+</div>
     </div>
 
     <script>
@@ -427,29 +496,56 @@
         let currentUser = null;
         let posts = [
             {
-                id: '1',
-                content: 'Looking for help with my calculus homework! Need someone to explain derivatives and integration. Can offer help with programming in return.',
-                author: { displayName: 'Sarah Johnson', username: 'sarah_codes', avatar: 'SJ' },
-                category: 'mathematics',
-                postType: 'exchange',
-                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-                likes: 12,
-                replies: 3,
-                shares: 1
-            },
-            {
-                id: '2',
-                content: 'Commission available: Need a well-researched essay on climate change impacts. 2000 words, APA format. Serious inquiries only.',
-                author: { displayName: 'Mike Chen', username: 'mike_research', avatar: 'MC' },
-                category: 'science',
-                postType: 'commission',
-                budget: '$150',
-                deadline: '2025-02-01',
-                timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
-                likes: 8,
-                replies: 15,
-                shares: 2
-            }
+        id: '1',
+        content: 'Looking for help with my calculus homework! Need someone to explain derivatives and integration. Can offer help with programming in return.',
+        author: { displayName: 'Sarah Johnson', username: 'sarah_codes', avatar: 'SJ' },
+        category: 'mathematics',
+        postType: 'exchange',
+        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
+        likes: { count: 12, icon: '👍' }, // Like icon
+        replies: { count: 3, icon: '💬' }, // Reply icon
+        shares: { count: 1, icon: '🔗' } // Share icon
+    },
+    {
+        id: '2',
+        content: 'Commission available: Need a well-researched essay on climate change impacts. 2000 words, APA format. Serious inquiries only.',
+        author: { displayName: 'Mike Chen', username: 'mike_research', avatar: 'MC' },
+        category: 'science',
+        postType: 'commission',
+        budget: '150 tokens',
+        deadline: '2025-02-01',
+        timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
+        likes: { count: 8, icon: '👍' },
+        replies: { count: 15, icon: '💬' },
+        shares: { count: 2, icon: '🔗' }
+    },
+    {
+        id: '3',
+        content: 'Looking for a tutor for organic chemistry. Need help understanding reaction mechanisms. Flexible schedule!',
+        author: { displayName: 'Emily Smith', username: 'emily_chem', avatar: 'ES' },
+        category: 'science',
+        postType: 'commission',
+        budget: '100 tokens',
+        deadline: '2025-03-15',
+        timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
+        likes: { count: 5, icon: '👍' },
+        replies: { count: 2, icon: '💬' },
+        shares: { count: 0, icon: '🔗' }
+    },
+    {
+        id: '4',
+        content: 'Need assistance with my literature review on Shakespeare. Looking for detailed analysis and insights.',
+        author: { displayName: 'John Doe', username: 'john_lit', avatar: 'JD' },
+        category: 'english',
+        postType: 'commission',
+        budget: '200 tokens',
+        deadline: '2025-05-01',
+        timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
+        likes: { count: 10, icon: '👍' },
+        replies: { count: 5, icon: '💬' },
+        shares: { count: 1, icon: '🔗' }
+    }
+    
         ];
 
         const categories = [
@@ -582,62 +678,62 @@
         }
 
         function createPostElement(post, categoryData) {
-            const postDiv = document.createElement('div');
-            postDiv.className = 'post-card';
-            
-            const timeAgo = formatTimeAgo(post.timestamp);
-            
-            postDiv.innerHTML = `
-                <div class="flex space-x-3">
-                    <div class="avatar">
-                        <span>${post.author.avatar}</span>
-                    </div>
-                    <div class="flex-1 space-y-2">
-                        <div class="flex items-center space-x-2">
-                            <span class="font-semibold">${post.author.displayName}</span>
-                            <span class="text-gray-500">@${post.author.username}</span>
-                            <span class="text-gray-500">·</span>
-                            <span class="text-gray-500">${timeAgo}</span>
-                        </div>
-                        
-                        <div class="flex items-center space-x-2 mb-2">
-                            <span class="badge ${categoryData ? categoryData.color : 'badge-blue'}">
-                                ${categoryData ? categoryData.label : post.category}
-                            </span>
-                        </div>
-                        
-                        <p class="whitespace-pre-wrap">${post.content}</p>
-                        
-                        ${post.budget || post.deadline ? `
-                            <div class="flex items-center space-x-4 text-sm text-gray-500">
-                                ${post.budget ? `<span>💰 ${post.budget}</span>` : ''}
-                                ${post.deadline ? `<span>⏰ Due: ${new Date(post.deadline).toLocaleDateString()}</span>` : ''}
-                            </div>
-                        ` : ''}
-                        
-                        <div class="flex items-center space-x-8 pt-3 text-gray-500">
-                            <button class="btn-ghost text-sm flex items-center space-x-1">
-                                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                                <span>${post.replies}</span>
-                            </button>
-                            <button class="btn-ghost text-sm flex items-center space-x-1" onclick="toggleLike('${post.id}')">
-                                <i data-lucide="heart" class="w-4 h-4"></i>
-                                <span id="likes-${post.id}">${post.likes}</span>
-                            </button>
-                            <button class="btn-ghost text-sm flex items-center space-x-1">
-                                <i data-lucide="share" class="w-4 h-4"></i>
-                                <span>${post.shares}</span>
-                            </button>
-                            <button class="btn-ghost text-sm">
-                                <i data-lucide="bookmark" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
+    const postDiv = document.createElement('div');
+    postDiv.className = 'post-card';
+    
+    const timeAgo = formatTimeAgo(post.timestamp);
+    
+    postDiv.innerHTML = `
+        <div class="flex space-x-3">
+            <div class="avatar">
+                <span>${post.author.avatar}</span>
+            </div>
+            <div class="flex-1 space-y-2">
+                <div class="flex items-center space-x-2">
+                    <span class="font-semibold">${post.author.displayName}</span>
+                    <span class="text-gray-500">@${post.author.username}</span>
+                    <span class="text-gray-500">·</span>
+                    <span class="text-gray-500">${timeAgo}</span>
                 </div>
-            `;
-            
-            return postDiv;
-        }
+                
+                <div class="flex items-center space-x-2 mb-2">
+                    <span class="badge ${categoryData ? categoryData.color : 'badge-blue'}">
+                        ${categoryData ? categoryData.label : post.category}
+                    </span>
+                </div>
+                
+                <p class="whitespace-pre-wrap">${post.content}</p>
+                
+                ${post.budget || post.deadline ? `
+                    <div class="flex items-center space-x-4 text-sm text-gray-500">
+                        ${post.budget ? `<span>💰 ${post.budget}</span>` : ''}
+                        ${post.deadline ? `<span>⏰ Due: ${new Date(post.deadline).toLocaleDateString()}</span>` : ''}
+                    </div>
+                ` : ''}
+                
+                <div class="flex items-center space-x-8 pt-3 text-gray-500">
+                    <button class="btn-ghost text-sm flex items-center space-x-1">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>${post.replies.icon} ${post.replies.count}</span>
+                    </button>
+                    <button class="btn-ghost text-sm flex items-center space-x-1" onclick="toggleLike('${post.id}')">
+                        <i data-lucide="heart" class="w-4 h-4"></i>
+                        <span id="likes-${post.id}">${post.likes.icon} ${post.likes.count}</span>
+                    </button>
+                    <button class="btn-ghost text-sm flex items-center space-x-1">
+                        <i data-lucide="share" class="w-4 h-4"></i>
+                        <span>${post.shares.icon} ${post.shares.count}</span>
+                    </button>
+                    <button class="btn-ghost text-sm">
+                        <i data-lucide="bookmark" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    return postDiv;
+}
 
         function toggleLike(postId) {
             const post = posts.find(p => p.id === postId);
@@ -712,7 +808,7 @@
             const password = document.getElementById('login-password').value;
             
             // Mock login
-            login(email, 'John Doe', email.split('@')[0]);
+            login(email, 'Sample User', email.split('@')[0]);
         });
 
         document.getElementById('signupForm').addEventListener('submit', function(e) {
@@ -816,6 +912,43 @@ function cancelProfileSettings() {
     document.getElementById('profile-settings-form').reset();
     // Optionally, you can redirect to another page or close the settings
 }
+    </script>
+    <script>
+        function openModal() {
+    document.getElementById('buy-token-modal').classList.remove('hidden');
+}
+
+function closeModal() {
+    document.getElementById('buy-token-modal').classList.add('hidden');
+}
+
+function togglePaymentFields() {
+    const paymentMethod = document.getElementById('payment-method').value;
+    document.getElementById('gcash-fields').classList.toggle('hidden', paymentMethod !== 'gcash');
+    document.getElementById('credit-card-fields').classList.toggle('hidden', paymentMethod !== 'credit-card');
+}
+
+function purchaseTokens() {
+    const amount = document.getElementById('token-amount').value;
+    const paymentMethod = document.getElementById('payment-method').value;
+
+    if (amount > 0) {
+        // Handle the purchase logic here (e.g., API call to process payment)
+        alert(`Purchased ${amount} tokens via ${paymentMethod}.`);
+        closeModal();
+    } else {
+        alert('Please enter a valid amount of tokens.');
+    }
+}
+document.getElementById('search-button').addEventListener('click', function() {
+    const query = document.getElementById('search-input').value;
+    const resultsDiv = document.getElementById('search-results');
+    
+    // For demonstration, simply display the search query
+    resultsDiv.innerHTML = `<p>Searching for: <strong>${query}</strong></p>`;
+    
+    // Here you could implement actual search logic against your data
+});
     </script>
 </body>
 </html>
