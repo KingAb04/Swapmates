@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,51 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f7f6;
+      background: url("assets/blobs.jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    .card {
+  background: white;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 15px;
+
+  /* Dark outline */
+  border: 2px solid rgba(0, 0, 0, 0.2);
+
+  /* Stronger shadow for overlay effect */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+  overflow: hidden;
+}
+
 
     header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px; /* reduced vertical padding */
+  background: white;
+}
+
+    /* Logo container */
+    .logo-container {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    header .logo {
-      font-weight: bold;
-      color: #0a9d8c;
-    }
+    .logo-container img {
+        padding-left: 25px;
+        padding-top: 10px;
+  height: 75px;   /* bigger logo */
+  width: auto;    /* keep proportions */
+  display: block;
+}
 
     nav ul {
       list-style: none;
@@ -53,7 +83,7 @@
     }
 
     .btn:hover {
-      background: #d4a309;
+      background: #b68929;
     }
 
     .container {
@@ -65,7 +95,7 @@
 
     .text-box h1 {
       font-size: 3rem;
-      color: #2b4f2e;
+      color: #0a9d8c;  /* teal headline */
       margin: 0;
     }
 
@@ -76,7 +106,7 @@
     }
 
     .text-box .btn-secondary {
-      background: #0a9d8c;
+      background: #d66941;
       padding: 12px 24px;
       border-radius: 25px;
       text-decoration: none;
@@ -88,31 +118,71 @@
       max-width: 100%;
     }
 
+    /* Responsive tweaks */
+    @media (max-width: 1024px) {
+      .logo-container img {
+        height: 35px; /* slightly smaller on tablet */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-container img {
+        height: 30px; /* smaller logo on mobile */
+      }
+
+      .container {
+        grid-template-columns: 1fr; /* stack text + image */
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      nav ul li {
+        margin-left: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-container img {
+        height: 25px; /* tiny logo on extra small screens */
+      }
+    }
   </style>
 </head>
-<body>
-  <header>
-    <div class="logo">YOUR WEBSITE</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Work</a></li>
-        <li><a href="#">Info</a></li>
-        <li><a href="#" class="btn">Get Started</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="container">
-    <div class="text-box">
-      <h1>Creative Idea</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero feugiat, faucibus libero id, scelerisque quam.</p>
-      <a href="#" class="btn-secondary">Learn More</a>
-    </div>
-    <div class="image-box">
-      <img src="assets/2.png" alt="Creative Work Illustration">
-    </div>
-  </section>
+<body>
+  <div class="card">
+    <header>
+      <div class="logo-container">
+        <a href="index.html">
+          <img src="assets/logo.png" alt="Logo" />
+        </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Info</a></li>
+          <li><a href="#" class="btn">Get Started</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="container">
+      <div class="text-box">
+        <h1>Find your SwapMates!</h1>
+        <p>
+          Discover a smarter way to connect, share, and swap what matters most.
+          Whether it’s ideas, skills, or experiences — SwapMates makes it simple, fun,
+          and rewarding to find the right match for you.
+        </p>
+        <a href="#" class="btn-secondary">Learn More</a>
+      </div>
+      <div class="image-box">
+        <img src="assets/2.png" alt="Creative Work Illustration">
+      </div>
+    </section>
+  </div>
 </body>
+
 </html>
