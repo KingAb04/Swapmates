@@ -35,10 +35,6 @@
             --input-background: #1a1a1a;
         }
         
-        body {
-            background-color: var(--background);
-            color: var(--foreground);
-        }
         
         .btn-primary {
             background-color: var(--primary);
@@ -189,6 +185,7 @@
     color: var(--foreground);
 }
 
+
 .notification-item {
     border-bottom: 1px solid var(--border); /* Divider between notifications */
     padding: 1rem 0; /* Vertical padding for each notification */
@@ -322,4 +319,137 @@
     border: 1px solid var(--primary);
     border-radius: var(--radius);
     cursor: pointer;
+}
+
+.commission-item {
+    background-color: #ffffff; /* White background for the commission items */
+    border: 1px solid #e5e7eb; /* Light gray border */
+    border-radius: 0.375rem; /* Rounded corners */
+    padding: 1rem; /* Padding inside the items */
+    transition: box-shadow 0.2s; /* Smooth transition for hover effect */
+}
+
+.commission-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
+
+.card {
+    background-color: #f9fafb; /* Light background for cards */
+    border-radius: 0.375rem; /* Rounded corners */
+    padding: 1rem; /* Padding inside the cards */
+}
+
+#feed {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 1rem; /* Optional: Add some padding to avoid content touching the scrollbar */
+}
+#commission-feed {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 1rem; /* Optional: Add some padding to avoid content touching the scrollbar */
+}
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+.modal-content {
+    background-color: #fff; /* White background for modal */
+    padding: 20px;
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 500px; /* Max width for modal */
+    position: relative; /* For positioning close button */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem; /* Close button size */
+}
+
+.payment-fields {
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*search*/
+#search-page {
+    font-family: Arial, sans-serif;
+}
+
+.sticky {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#search-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#search-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+#search-results {
+    margin-top: 20px;
+}
+
+#search-results p {
+    font-size: 16px;
+    color: #666;
+}
+
+.page {
+    padding: 16px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.p-8 {
+    padding: 2rem;
 }
