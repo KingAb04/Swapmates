@@ -1,954 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwapMates - Academic Collaboration Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Idea</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f6;
+    }
 
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header .logo {
+      font-weight: bold;
+      color: #0a9d8c;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .btn {
+      background: #f6c30b;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #d4a309;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 60px 80px;
+    }
+
+    .text-box h1 {
+      font-size: 3rem;
+      color: #2b4f2e;
+      margin: 0;
+    }
+
+    .text-box p {
+      color: #666;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    .text-box .btn-secondary {
+      background: #0a9d8c;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .image-box img {
+      max-width: 100%;
+    }
+
+  </style>
 </head>
-<style>
-    .nav-btn {
-    background-color: transparent; /* Transparent background */
-    color: var(--foreground); /* Text color */
-    padding: 0.5rem 1rem; /* Padding */
-    border-radius: var(--radius); /* Rounded corners */
-    border: none; /* No border */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-weight: 500; /* Font weight */
-    transition: background-color 0.2s, color 0.2s; /* Smooth transition */
-}
-
-.nav-btn:hover {
-    background-color: var(--accent); /* Background on hover */
-    color: var(--primary-foreground); /* Change text color on hover */
-}
-
-.nav-btn.active-nav {
-    background-color: var(--primary); /* Active background */
-    color: var(--primary-foreground); /* Active text color */
-    border-radius: var(--radius); /* Ensure rounded corners remain */
-}
-</style>
 <body>
-    <!-- Authentication Page -->
-    <div id="auth-page" class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-        <div class="w-full max-w-md">
-            <!-- Login Form -->
-            <div id="login-form" class="card">
-                <div class="text-center mb-6">
-                    <div class="flex items-center justify-center space-x-2 mb-4">
-                        <img src="logo.png" alt="SwapMates Logo" class="logo"> <!-- Adjust path as necessary -->
-                    </div>
-                    <h1 class="text-2xl font-bold mb-2">Welcome back</h1>
-                    <p class="text-gray-600">Sign in to your SwapMates account</p>
-                </div>
-                
-                <form id="loginForm" class="space-y-4">
-                    <div>
-                        <label for="login-email" class="block text-sm font-medium mb-2">Email</label>
-                        <input type="email" id="login-email" class="input" placeholder="Enter your email" required>
-                    </div>
-                    <div>
-                        <label for="login-password" class="block text-sm font-medium mb-2">Password</label>
-                        <input type="password" id="login-password" class="input" placeholder="Enter your password" required>
-                    </div>
-                    <button type="submit" class="btn-primary w-full">Sign In</button>
-                </form>
-                
-                <p class="text-sm text-center mt-4">
-                    Don't have an account? 
-                    <button onclick="toggleAuthForm()" class="text-blue-600 hover:underline">Sign up</button>
-                </p>
-            </div>
-            
-            <!-- Signup Form -->
-            <div id="signup-form" class="card hidden">
-                <div class="text-center mb-6">
-                    <div class="flex items-center justify-center space-x-2 mb-4">
-                        <img src="logo.png" alt="SwapMates Logo" class="logo"> <!-- Adjust path as necessary -->
-                    </div>
-                    <h1 class="text-2xl font-bold mb-2">Join SwapMates</h1>
-                    <p class="text-gray-600">Create your account to start collaborating</p>
-                </div>
-                
-                <form id="signupForm" class="space-y-4">
-                    <div>
-                        <label for="signup-name" class="block text-sm font-medium mb-2">Display Name</label>
-                        <input type="text" id="signup-name" class="input" placeholder="Your full name" required>
-                    </div>
-                    <div>
-                        <label for="signup-username" class="block text-sm font-medium mb-2">Username</label>
-                        <input type="text" id="signup-username" class="input" placeholder="Choose a username" required>
-                    </div>
-                    <div>
-                        <label for="signup-email" class="block text-sm font-medium mb-2">Email</label>
-                        <input type="email" id="signup-email" class="input" placeholder="Enter your email" required>
-                    </div>
-                    <div>
-                        <label for="signup-password" class="block text-sm font-medium mb-2">Password</label>
-                        <input type="password" id="signup-password" class="input" placeholder="Create a password" required>
-                    </div>
-                    <button type="submit" class="btn-primary w-full">Create Account</button>
-                </form>
-                
-                <p class="text-sm text-center mt-4">
-                    Already have an account? 
-                    <button onclick="toggleAuthForm()" class="text-blue-600 hover:underline">Sign in</button>
-                </p>
-            </div>
-        </div>
+  <header>
+    <div class="logo">YOUR WEBSITE</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#" class="btn">Get Started</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="container">
+    <div class="text-box">
+      <h1>Creative Idea</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero feugiat, faucibus libero id, scelerisque quam.</p>
+      <a href="#" class="btn-secondary">Learn More</a>
     </div>
-
-    <!-- Dashboard -->
-    <div id="dashboard" class="hidden min-h-screen flex bg-white">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Logo -->
-            <div class="p-4 border-b border-gray-200">
-                <div class="flex items-center justify-center space-x-2 mb-4">
-                        <img src="logo.png" alt="SwapMates Logo" class="logo"> <!-- Adjust path as necessary -->
-                    </div>
-            </div>
-
-            <!-- Navigation -->
-            <nav class="flex-1 p-4">
-                <div class="space-y-2">
-                    <button onclick="showPage('home')" class="nav-btn active-nav btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="home" class="w-5 h-5"></i>
-                        <span>Home</span>
-                    </button>
-                    <button onclick="showPage('categories')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="grid-3x3" class="w-5 h-5"></i>
-                        <span>Categories</span>
-                    </button>
-                    <button onclick="showPage('commission')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="dollar-sign" class="w-5 h-5"></i>
-                        <span>Commission</span>
-                    </button>
-                    <button onclick="showPage('search')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                        <span>Search</span>
-                    </button>
-                    <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="bell" class="w-5 h-5"></i>
-                        <span>Notifications</span>
-                    </button>
-                    <button onclick="showPage('messages')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                        <span>Messages</span>
-                    </button>
-                    <button onclick="showPage('profile')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                        <span>Profile</span>
-                    </button>
-                </div>
-            </nav>
-
-            <!-- User Profile -->
-            <div class="p-4 border-t border-gray-200">
-                <div class="flex items-center space-x-3 mb-3">
-                    <div class="avatar">
-                        <span id="user-avatar">SU</span>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium truncate" id="user-name">SAMPLE USER</p>
-                        <p class="text-xs text-gray-500 truncate" id="user-username">@SAMPLE</p>
-                    </div>
-                </div>
-                <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2">
-                    <i data-lucide="log-out" class="w-4 h-4"></i>
-                    <span>Sign Out</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Home Page -->
-            <div id="home-page" class="page">
-                <!-- Header -->
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Home</h1>
-                </div>
-                
-                <!-- Create Post -->
-                <div class="border-b border-gray-200 p-4">
-                    <div class="flex space-x-3">
-                        <div class="avatar">
-                            <span id="create-post-avatar">SU</span>
-                        </div>
-                        <div class="flex-1 space-y-3">
-                            <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
-                            
-                            <div class="grid grid-cols-2 gap-3">
-                                <select id="post-type" class="select">
-                                    <option value="">Select post type</option>
-                                    <option value="exchange">📄 Exchange</option>
-                                    <option value="commission">💰 Commission</option>
-                                    <option value="help">⏰ Need Help</option>
-                                </select>
-                                
-                                <select id="post-category" class="select">
-                                    <option value="">Select category</option>
-                                    <option value="mathematics">Mathematics</option>
-                                    <option value="science">Science</option>
-                                    <option value="english">English</option>
-                                    <option value="history">History</option>
-                                    <option value="computer-science">Computer Science</option>
-                                    <option value="art">Art & Design</option>
-                                    <option value="business">Business</option>
-                                    <option value="psychology">Psychology</option>
-                                </select>
-                            </div>
-                            
-                            <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
-                                <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)">
-                                <input type="date" id="post-deadline" class="input">
-                            </div>
-                            
-                            <div class="flex items-center justify-between pt-3 border-t border-gray-200">
-                                <span class="text-sm text-gray-500">
-                                    <span id="char-count">0</span>/280
-                                </span>
-                                <button onclick="createPost()" class="btn-primary">Post</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Feed -->
-                <div id="feed" class="overflow-y-auto">
-                    <!-- Posts will be dynamically added here -->
-                </div>
-            </div>
-
-            <!-- Categories Page -->
-            <div id="categories-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Categories</h1>
-                    <p class="text-gray-600">Browse academic tasks by subject</p>
-                </div>
-                
-                <div class="p-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="categories-grid">
-                        <!-- Categories will be populated here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Commission Page -->
-            <div id="commission-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Commission Board</h1>
-                    <p class="text-gray-600">Find paid academic work opportunities</p>
-                </div>
-                
-                <div class="p-4">
-                    <div class="grid grid-cols-3 gap-4 mb-6">
-                        <div class="card text-center">
-                            <p class="text-2xl font-bold">127</p>
-                            <p class="text-xs text-gray-500">Active Commissions</p>
-                        </div>
-                        <div class="card text-center">
-                            <p class="text-2xl font-bold">2.4h</p>
-                            <p class="text-xs text-gray-500">Avg. Response Time</p>
-                        </div>
-                        <div class="card text-center">
-                            <p class="text-2xl font-bold">94%</p>
-                            <p class="text-xs text-gray-500">Success Rate</p>
-                        </div>
-                    </div>
-                    
-                    <div id="commission-feed">
-                        <!-- Commission posts will be populated here -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Other Pages (Placeholder) -->
-            <div id="search-page" class="page hidden">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-        <h1 class="text-xl font-bold">Search</h1>
+    <div class="image-box">
+      <img src="assets/2.png" alt="Creative Work Illustration">
     </div>
-    <div class="p-8">
-        <div class="flex justify-center mb-4">
-            <input 
-                type="text" 
-                id="search-input" 
-                placeholder="Search for posts or users..." 
-                class="border rounded p-2 w-1/2"
-            />
-            <button 
-                id="search-button" 
-                class="ml-2 bg-blue-500 text-white rounded px-4 py-2"
-            >
-                Search
-            </button>
-        </div>
-        <div id="search-results" class="text-center text-gray-500">
-            <p>No results found.</p>
-        </div>
-    </div>
-</div>
-
-            <div id="notifications-page" class="page hidden">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-        <h1 class="text-xl font-bold">Notifications</h1>
-    </div>
-    <div class="p-8">
-        <div class="notification-item border-b border-gray-200 py-4">
-            <p class="font-medium">John Doe commented on your post.</p>
-            <span class="text-sm text-gray-500">2 hours ago</span>
-        </div>
-        <div class="notification-item border-b border-gray-200 py-4">
-            <p class="font-medium">You have a new follower: Jane Smith.</p>
-            <span class="text-sm text-gray-500">5 hours ago</span>
-        </div>
-        <div class="notification-item border-b border-gray-200 py-4">
-            <p class="font-medium">Your post was liked by Mike Chen.</p>
-            <span class="text-sm text-gray-500">1 day ago</span>
-        </div>
-        <div class="notification-item border-b border-gray-200 py-4">
-            <p class="font-medium">New message from Sarah Johnson.</p>
-            <span class="text-sm text-gray-500">1 day ago</span>
-        </div>
-        <div class="notification-item border-b border-gray-200 py-4">
-            <p class="font-medium">Your commission request has been approved!</p>
-            <span class="text-sm text-gray-500">2 days ago</span>
-        </div>
-    </div>
-</div>
-
-
-<!------message------->
-<div id="messages-page" class="page hidden">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-        <h1 class="text-xl font-bold">Messages</h1>
-    </div>
-    <div class="p-8">
-        <div id="message-list" class="message-list">
-            <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('1')">
-                <p class="font-medium">John Doe: Hey, how's it going?</p>
-                <span class="text-sm text-gray-500">2 hours ago</span>
-            </div>
-            <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('2')">
-                <p class="font-medium">Jane Smith: Are we still on for the meeting?</p>
-                <span class="text-sm text-gray-500">5 hours ago</span>
-            </div>
-        </div>
-        <div class="text-center text-gray-500 my-4 hidden" id="no-messages">
-            <p>No messages yet</p>
-        </div>
-    </div>
-
-    <!-- Modal for Chat -->
-    <div id="message-modal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close" onclick="closeMessageModal()">&times;</span>
-        <div id="opened-message" class="opened-message"></div>
-        <div id="chat-replies" class="chat-replies"></div> <!-- Chat replies section -->
-        <textarea id="reply-input" class="textarea" rows="3" placeholder="Write a reply..." required></textarea>
-        <button id="send-reply" class="btn-primary w-full mt-2">Send Reply</button>
-    </div>
-</div>
-</div>
-
-    <!----profile setting-->
-            <div id="profile-page" class="page hidden">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-        <h1 class="text-xl font-bold">Profile Settings</h1>
-    </div>
-    <div class="p-8">
-        <form id="profile-settings-form" class="space-y-6">
-            <div>
-                <label for="profile-name" class="block text-sm font-medium">Display Name</label>
-                <input type="text" id="profile-name" class="input" placeholder="Your full name" required>
-            </div>
-            <div>
-                <label for="profile-username" class="block text-sm font-medium">Username</label>
-                <input type="text" id="profile-username" class="input" placeholder="Choose a username" required>
-            </div>
-            <div>
-                <label for="profile-email" class="block text-sm font-medium">Email</label>
-                <input type="email" id="profile-email" class="input" placeholder="Enter your email" required>
-            </div>
-            <div>
-                <label for="profile-password" class="block text-sm font-medium">New Password</label>
-                <input type="password" id="profile-password" class="input" placeholder="Create a new password">
-            </div>
-            <div>
-                <label for="profile-confirm-password" class="block text-sm font-medium">Confirm Password</label>
-                <input type="password" id="profile-confirm-password" class="input" placeholder="Confirm your new password">
-            </div>
-            <div class="flex justify-between">
-                <button type="button" onclick="saveProfileSettings()" class="btn-primary">Save Changes</button>
-                <button type="button" onclick="cancelProfileSettings()" class="btn-secondary">Cancel</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-        </div>
-
-        <!-- Right Sidebar -->
-        <div class="right-sidebar hidden lg:block">
-    <div class="space-y-4">
-
-        <!-- Token Box -->
-        <div class="card">
-            <div class="flex justify-between items-center">
-                <span class="font-semibold">Tokens</span>
-                <span class="text-xl">100</span> <!-- Replace with dynamic token count -->
-            </div>
-            <button onclick="openModal()" class="btn-primary mt-2 w-full">Buy More Tokens</button>
-        </div>
-
-        <!-- Trending Categories -->
-        <div class="card">
-            <h3 class="font-semibold mb-2">Trending Categories</h3>
-            <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                    <span>Computer Science</span>
-                    <span class="text-gray-500">189 posts</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span>Mathematics</span>
-                    <span class="text-gray-500">156 posts</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span>Science</span>
-                    <span class="text-gray-500">134 posts</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Quick Stats -->
-        <div class="card">
-            <h3 class="font-semibold mb-2">Quick Stats</h3>
-            <div class="space-y-2 text-sm">
-                <div class="flex justify-between">
-                    <span>Active Users</span>
-                    <span class="text-gray-500">2,847</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Today's Posts</span>
-                    <span class="text-gray-500">124</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Success Rate</span>
-                    <span class="text-gray-500">94%</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal for Buying Tokens -->
-<div id="buy-token-modal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 class="font-semibold">Buy Tokens</h2>
-        <p>Select a payment method to buy more tokens.</p>
-        
-        <div class="space-y-4 mt-4">
-            <div>
-                <label for="token-amount" class="block text-sm">Amount of Tokens:</label>
-                <input type="number" id="token-amount" class="input" placeholder="Enter amount" min="1">
-            </div>
-            <div>
-                <label class="block text-sm">Payment Method:</label>
-                <select id="payment-method" class="select" onchange="togglePaymentFields()">
-                    <option value="gcash">Gcash</option>
-                    <option value="credit-card">Credit Card</option>
-                </select>
-            </div>
-            
-            <div id="gcash-fields" class="payment-fields">
-                <label for="gcash-number" class="block text-sm">Gcash Number:</label>
-                <input type="text" id="gcash-number" class="input" placeholder="Enter Gcash number">
-            </div>
-            
-            <div id="credit-card-fields" class="payment-fields hidden">
-                <label for="credit-card-number" class="block text-sm">Credit Card Number:</label>
-                <input type="text" id="credit-card-number" class="input" placeholder="Enter credit card number">
-                
-                <label for="card-expiry" class="block text-sm mt-2">Expiry Date:</label>
-                <input type="text" id="card-expiry" class="input" placeholder="MM/YY">
-                
-                <label for="card-cvc" class="block text-sm mt-2">CVC:</label>
-                <input type="text" id="card-cvc" class="input" placeholder="Enter CVC">
-            </div>
-            
-            <button class="btn-primary mt-4" onclick="purchaseTokens()">Purchase</button>
-        </div>
-    </div>
-</div>
-    </div>
-
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-
-        // Global state
-        let currentUser = null;
-        let posts = [
-            {
-        id: '1',
-        content: 'Looking for help with my calculus homework! Need someone to explain derivatives and integration. Can offer help with programming in return.',
-        author: { displayName: 'Sarah Johnson', username: 'sarah_codes', avatar: 'SJ' },
-        category: 'mathematics',
-        postType: 'exchange',
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-        likes: { count: 12, icon: '👍' }, // Like icon
-        replies: { count: 3, icon: '💬' }, // Reply icon
-        shares: { count: 1, icon: '🔗' } // Share icon
-    },
-    {
-        id: '2',
-        content: 'Commission available: Need a well-researched essay on climate change impacts. 2000 words, APA format. Serious inquiries only.',
-        author: { displayName: 'Mike Chen', username: 'mike_research', avatar: 'MC' },
-        category: 'science',
-        postType: 'commission',
-        budget: '150 tokens',
-        deadline: '2025-02-01',
-        timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
-        likes: { count: 8, icon: '👍' },
-        replies: { count: 15, icon: '💬' },
-        shares: { count: 2, icon: '🔗' }
-    },
-    {
-        id: '3',
-        content: 'Looking for a tutor for organic chemistry. Need help understanding reaction mechanisms. Flexible schedule!',
-        author: { displayName: 'Emily Smith', username: 'emily_chem', avatar: 'ES' },
-        category: 'science',
-        postType: 'commission',
-        budget: '100 tokens',
-        deadline: '2025-03-15',
-        timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
-        likes: { count: 5, icon: '👍' },
-        replies: { count: 2, icon: '💬' },
-        shares: { count: 0, icon: '🔗' }
-    },
-    {
-        id: '4',
-        content: 'Need assistance with my literature review on Shakespeare. Looking for detailed analysis and insights.',
-        author: { displayName: 'John Doe', username: 'john_lit', avatar: 'JD' },
-        category: 'english',
-        postType: 'commission',
-        budget: '200 tokens',
-        deadline: '2025-05-01',
-        timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
-        likes: { count: 10, icon: '👍' },
-        replies: { count: 5, icon: '💬' },
-        shares: { count: 1, icon: '🔗' }
-    }
-    
-        ];
-
-        const categories = [
-            { value: 'mathematics', label: 'Mathematics', color: 'badge-blue', description: 'Algebra, Calculus, Statistics, Geometry', posts: 156 },
-            { value: 'science', label: 'Science', color: 'badge-green', description: 'Physics, Chemistry, Biology, Environmental Science', posts: 134 },
-            { value: 'english', label: 'English', color: 'badge-purple', description: 'Literature, Writing, Grammar, Essays', posts: 98 },
-            { value: 'history', label: 'History', color: 'badge-orange', description: 'World History, American History, Ancient Civilizations', posts: 67 },
-            { value: 'computer-science', label: 'Computer Science', color: 'badge-indigo', description: 'Programming, Data Structures, Algorithms, Web Development', posts: 189 },
-            { value: 'art', label: 'Art & Design', color: 'badge-pink', description: 'Visual Arts, Graphic Design, Photography, Digital Art', posts: 45 },
-            { value: 'business', label: 'Business', color: 'badge-yellow', description: 'Economics, Marketing, Management, Finance', posts: 73 },
-            { value: 'psychology', label: 'Psychology', color: 'badge-red', description: 'Cognitive Psychology, Social Psychology, Research Methods', posts: 54 }
-        ];
-
-        // Authentication functions
-        function toggleAuthForm() {
-            const loginForm = document.getElementById('login-form');
-            const signupForm = document.getElementById('signup-form');
-            
-            if (loginForm.classList.contains('hidden')) {
-                loginForm.classList.remove('hidden');
-                signupForm.classList.add('hidden');
-            } else {
-                loginForm.classList.add('hidden');
-                signupForm.classList.remove('hidden');
-            }
-        }
-
-        function login(email, displayName, username) {
-            currentUser = {
-                email,
-                displayName,
-                username,
-                avatar: displayName.split(' ').map(n => n[0]).join('')
-            };
-            
-            // Update UI with user info
-            document.getElementById('user-name').textContent = displayName;
-            document.getElementById('user-username').textContent = `@${username}`;
-            document.getElementById('user-avatar').textContent = currentUser.avatar;
-            document.getElementById('create-post-avatar').textContent = currentUser.avatar;
-            
-            // Show dashboard, hide auth
-            document.getElementById('auth-page').classList.add('hidden');
-            document.getElementById('dashboard').classList.remove('hidden');
-            
-            // Initialize pages
-            initializePages();
-        }
-
-        function logout() {
-            currentUser = null;
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('auth-page').classList.remove('hidden');
-            
-            // Reset forms
-            document.getElementById('loginForm').reset();
-            document.getElementById('signupForm').reset();
-        }
-
-        // Page navigation
-        function showPage(pageName) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.add('hidden');
-            });
-            
-            // Remove active class from all nav buttons
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active-nav');
-                btn.classList.add('btn-ghost');
-            });
-            
-            // Show selected page
-            document.getElementById(`${pageName}-page`).classList.remove('hidden');
-            
-            // Update active nav button
-            event.target.closest('.nav-btn').classList.add('active-nav');
-            event.target.closest('.nav-btn').classList.remove('btn-ghost');
-        }
-
-        // Post functions
-        function createPost() {
-            const content = document.getElementById('post-content').value.trim();
-            const postType = document.getElementById('post-type').value;
-            const category = document.getElementById('post-category').value;
-            const budget = document.getElementById('post-budget').value;
-            const deadline = document.getElementById('post-deadline').value;
-            
-            if (!content || !postType || !category) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            const newPost = {
-                id: Date.now().toString(),
-                content,
-                author: currentUser,
-                category,
-                postType,
-                budget: budget || null,
-                deadline: deadline || null,
-                timestamp: new Date(),
-                likes: 0,
-                replies: 0,
-                shares: 0
-            };
-            
-            posts.unshift(newPost);
-            
-            // Clear form
-            document.getElementById('post-content').value = '';
-            document.getElementById('post-type').value = '';
-            document.getElementById('post-category').value = '';
-            document.getElementById('post-budget').value = '';
-            document.getElementById('post-deadline').value = '';
-            document.getElementById('commission-fields').classList.add('hidden');
-            
-            renderFeed();
-        }
-
-        function renderFeed() {
-            const feed = document.getElementById('feed');
-            feed.innerHTML = '';
-            
-            posts.forEach(post => {
-                const categoryData = categories.find(cat => cat.value === post.category);
-                const postElement = createPostElement(post, categoryData);
-                feed.appendChild(postElement);
-            });
-        }
-
-        function createPostElement(post, categoryData) {
-    const postDiv = document.createElement('div');
-    postDiv.className = 'post-card';
-    
-    const timeAgo = formatTimeAgo(post.timestamp);
-    
-    postDiv.innerHTML = `
-        <div class="flex space-x-3">
-            <div class="avatar">
-                <span>${post.author.avatar}</span>
-            </div>
-            <div class="flex-1 space-y-2">
-                <div class="flex items-center space-x-2">
-                    <span class="font-semibold">${post.author.displayName}</span>
-                    <span class="text-gray-500">@${post.author.username}</span>
-                    <span class="text-gray-500">·</span>
-                    <span class="text-gray-500">${timeAgo}</span>
-                </div>
-                
-                <div class="flex items-center space-x-2 mb-2">
-                    <span class="badge ${categoryData ? categoryData.color : 'badge-blue'}">
-                        ${categoryData ? categoryData.label : post.category}
-                    </span>
-                </div>
-                
-                <p class="whitespace-pre-wrap">${post.content}</p>
-                
-                ${post.budget || post.deadline ? `
-                    <div class="flex items-center space-x-4 text-sm text-gray-500">
-                        ${post.budget ? `<span>💰 ${post.budget}</span>` : ''}
-                        ${post.deadline ? `<span>⏰ Due: ${new Date(post.deadline).toLocaleDateString()}</span>` : ''}
-                    </div>
-                ` : ''}
-                
-                <div class="flex items-center space-x-8 pt-3 text-gray-500">
-                    <button class="btn-ghost text-sm flex items-center space-x-1">
-                        <i data-lucide="message-circle" class="w-4 h-4"></i>
-                        <span>${post.replies.icon} ${post.replies.count}</span>
-                    </button>
-                    <button class="btn-ghost text-sm flex items-center space-x-1" onclick="toggleLike('${post.id}')">
-                        <i data-lucide="heart" class="w-4 h-4"></i>
-                        <span id="likes-${post.id}">${post.likes.icon} ${post.likes.count}</span>
-                    </button>
-                    <button class="btn-ghost text-sm flex items-center space-x-1">
-                        <i data-lucide="share" class="w-4 h-4"></i>
-                        <span>${post.shares.icon} ${post.shares.count}</span>
-                    </button>
-                    <button class="btn-ghost text-sm">
-                        <i data-lucide="bookmark" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    return postDiv;
-}
-
-        function toggleLike(postId) {
-            const post = posts.find(p => p.id === postId);
-            if (post) {
-                post.likes += 1;
-                document.getElementById(`likes-${postId}`).textContent = post.likes;
-            }
-        }
-
-        function formatTimeAgo(timestamp) {
-            const now = new Date();
-            const diffInHours = Math.floor((now - timestamp) / (1000 * 60 * 60));
-            
-            if (diffInHours < 1) return 'now';
-            if (diffInHours < 24) return `${diffInHours}h`;
-            return `${Math.floor(diffInHours / 24)}d`;
-        }
-
-        function renderCategories() {
-            const grid = document.getElementById('categories-grid');
-            grid.innerHTML = '';
-            
-            categories.forEach(category => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'card cursor-pointer hover:shadow-md transition-shadow';
-                categoryDiv.innerHTML = `
-                    <div class="flex items-center justify-between mb-3">
-                        <div>
-                            <h3 class="text-lg font-semibold">${category.label}</h3>
-                            <p class="text-sm text-gray-600 mt-1">${category.description}</p>
-                        </div>
-                        <span class="badge badge-blue">${category.posts} posts</span>
-                    </div>
-                    <span class="badge ${category.color}">${category.label}</span>
-                `;
-                grid.appendChild(categoryDiv);
-            });
-        }
-
-        function renderCommissionFeed() {
-            const commissionFeed = document.getElementById('commission-feed');
-            const commissionPosts = posts.filter(post => post.postType === 'commission');
-            
-            commissionFeed.innerHTML = '';
-            
-            if (commissionPosts.length === 0) {
-                commissionFeed.innerHTML = `
-                    <div class="text-center text-gray-500 py-8">
-                        <p>No commission posts available yet.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            commissionPosts.forEach(post => {
-                const categoryData = categories.find(cat => cat.value === post.category);
-                const postElement = createPostElement(post, categoryData);
-                commissionFeed.appendChild(postElement);
-            });
-        }
-
-        function initializePages() {
-            renderFeed();
-            renderCategories();
-            renderCommissionFeed();
-        }
-
-        // Event listeners
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            
-            // Mock login
-            login(email, 'Sample User', email.split('@')[0]);
-        });
-
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('signup-email').value;
-            const displayName = document.getElementById('signup-name').value;
-            const username = document.getElementById('signup-username').value;
-            
-            // Mock signup
-            login(email, displayName, username);
-        });
-
-        document.getElementById('post-content').addEventListener('input', function() {
-            const count = this.value.length;
-            document.getElementById('char-count').textContent = count;
-        });
-
-        document.getElementById('post-type').addEventListener('change', function() {
-            const commissionFields = document.getElementById('commission-fields');
-            if (this.value === 'commission') {
-                commissionFields.classList.remove('hidden');
-            } else {
-                commissionFields.classList.add('hidden');
-            }
-        });
-
-        // Initialize icons after content loads
-        document.addEventListener('DOMContentLoaded', function() {
-            lucide.createIcons();
-        });
-    </script>
-    <script>
-        const messages = {
-    '1': { sender: 'John Doe', content: 'Hey, how\'s it going?', timestamp: '2 hours ago' },
-    '2': { sender: 'Jane Smith', content: 'Are we still on for the meeting?', timestamp: '5 hours ago' },
-};
-
-function openMessageModal(id) {
-    const message = messages[id];
-    const openedMessage = document.getElementById('opened-message');
-    const chatReplies = document.getElementById('chat-replies');
-
-    // Clear previous replies
-    chatReplies.innerHTML = '';
-
-    openedMessage.innerHTML = `
-        <p class="font-medium">${message.sender}: ${message.content}</p>
-        <span class="text-sm text-gray-500">${message.timestamp}</span>
-    `;
-    
-    // Show the modal
-    document.getElementById('message-modal').classList.remove('hidden');
-}
-
-function closeMessageModal() {
-    document.getElementById('message-modal').classList.add('hidden');
-}
-
-document.getElementById('send-reply').addEventListener('click', function() {
-    const replyInput = document.getElementById('reply-input');
-    const replyContent = replyInput.value.trim();
-
-    if (replyContent) {
-        const chatReplies = document.getElementById('chat-replies');
-
-        const newReply = document.createElement('div');
-        newReply.className = 'message-item py-2';
-        newReply.innerHTML = `
-            <p class="font-medium">You: ${replyContent}</p>
-            <span class="text-sm text-gray-500">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-        `;
-        
-        // Append the new reply to the chat replies section
-        chatReplies.appendChild(newReply);
-        replyInput.value = ''; // Clear the input field
-    }
-});
-    </script>
-    <script>
-        function saveProfileSettings() {
-    const name = document.getElementById('profile-name').value.trim();
-    const username = document.getElementById('profile-username').value.trim();
-    const email = document.getElementById('profile-email').value.trim();
-    const password = document.getElementById('profile-password').value.trim();
-    const confirmPassword = document.getElementById('profile-confirm-password').value.trim();
-
-    // Simple validation
-    if (password && password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
-
-    // Here you would typically send this data to the server
-    console.log('Profile updated:', { name, username, email, password });
-    
-    alert("Profile settings saved successfully!");
-}
-
-function cancelProfileSettings() {
-    // Clear the input fields
-    document.getElementById('profile-settings-form').reset();
-    // Optionally, you can redirect to another page or close the settings
-}
-    </script>
-    <script>
-        function openModal() {
-    document.getElementById('buy-token-modal').classList.remove('hidden');
-}
-
-function closeModal() {
-    document.getElementById('buy-token-modal').classList.add('hidden');
-}
-
-function togglePaymentFields() {
-    const paymentMethod = document.getElementById('payment-method').value;
-    document.getElementById('gcash-fields').classList.toggle('hidden', paymentMethod !== 'gcash');
-    document.getElementById('credit-card-fields').classList.toggle('hidden', paymentMethod !== 'credit-card');
-}
-
-function purchaseTokens() {
-    const amount = document.getElementById('token-amount').value;
-    const paymentMethod = document.getElementById('payment-method').value;
-
-    if (amount > 0) {
-        // Handle the purchase logic here (e.g., API call to process payment)
-        alert(`Purchased ${amount} tokens via ${paymentMethod}.`);
-        closeModal();
-    } else {
-        alert('Please enter a valid amount of tokens.');
-    }
-}
-document.getElementById('search-button').addEventListener('click', function() {
-    const query = document.getElementById('search-input').value;
-    const resultsDiv = document.getElementById('search-results');
-    
-    // For demonstration, simply display the search query
-    resultsDiv.innerHTML = `<p>Searching for: <strong>${query}</strong></p>`;
-    
-    // Here you could implement actual search logic against your data
-});
-    </script>
+  </section>
 </body>
 </html>
