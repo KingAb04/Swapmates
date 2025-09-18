@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Idea</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header .logo {
+      font-weight: bold;
+      color: #0a9d8c;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .btn {
+      background: #f6c30b;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #d4a309;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 60px 80px;
+    }
+
+    .text-box h1 {
+      font-size: 3rem;
+      color: #2b4f2e;
+      margin: 0;
+    }
+
+    .text-box p {
+      color: #666;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    .text-box .btn-secondary {
+      background: #0a9d8c;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .image-box img {
+      max-width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">YOUR WEBSITE</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Work</a></li>
+        <li><a href="#">Info</a></li>
+        <li><a href="#" class="btn">Get Started</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="container">
+    <div class="text-box">
+      <h1>Creative Idea</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero feugiat, faucibus libero id, scelerisque quam.</p>
+      <a href="#" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="image-box">
+      <img src="assets/2.png" alt="Creative Work Illustration">
+    </div>
+  </section>
+</body>
+</html>
