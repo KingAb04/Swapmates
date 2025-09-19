@@ -16,22 +16,25 @@
       justify-content: center;
       align-items: center;
     }
+.container {
+  overflow-y: hidden;  /* hide vertical scrollbar */
+}
 
     .card {
   background: white;
   width: 100%;
   max-width: 1200px;
+  min-height: 700px;   /* para kahit anong section same height */
   border-radius: 15px;
-
-  /* Dark outline */
   border: 2px solid rgba(0, 0, 0, 0.2);
-
-  /* Stronger shadow for overlay effect */
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
-
   overflow: hidden;
 }
 
+#about .image-box img {
+  max-width: 100%;
+  height: auto;
+}
 
     header {
   display: flex;
@@ -87,11 +90,17 @@
     }
 
     .container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 60px 80px;
-    }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 60px 80px;
+
+  /* Fixed size */
+  min-height: 600px;   /* minimum height */
+  max-height: 600px;   /* fixed height para pare-pareho */
+  box-sizing: border-box;
+  overflow-y: auto;    /* scroll kung mahaba content */
+}
 
     .text-box h1 {
       font-size: 3rem;
@@ -146,6 +155,61 @@
         height: 25px; /* tiny logo on extra small screens */
       }
     }
+    /* Pricing container */
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* Each pricing card */
+/* Each pricing card */
+.pricing-card {
+  flex: 0 0 300px;      /* dati 300px → paliitin */
+  max-width: 275px;
+  background: #fff;
+  text-align: center;
+  padding: 20px;        /* mas compact */
+  border: 2px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Standard card with light background */
+.pricing-card.standard {
+  background: #f0fdfa;   /* light teal */
+  border: 2px solid #0a9d8c;
+}
+
+/* Premium card highlight */
+.pricing-card.premium {
+  border: 2px solid #0a9d8c;
+  background: linear-gradient(135deg, #0a9d8c, #38b2ac);
+  color: white;
+}
+
+
+/* List inside card */
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 20px 0;
+}
+
+/* Buttons inside pricing */
+.pricing-card .btn-secondary {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.pricing-card.premium .btn {
+  background: white;
+  color: #0a9d8c;
+}
+
   </style>
 </head>
 
@@ -159,30 +223,113 @@
       </div>
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Work</a></li>
-          <li><a href="#">Info</a></li>
+          <li><a href="#" onclick="showSection('home')">Home</a></li>
+          <li><a href="#" onclick="showSection('about')">About us</a></li>
+          <li><a href="#" onclick="showSection('pricing')">Price</a></li>
           <li><a href="login.html" class="btn">Get Started</a></li>
         </ul>
       </nav>
     </header>
 
-    <section class="container">
+    <!-- Sections -->
+    <section id="home" class="container">
       <div class="text-box">
         <h1>Find your SwapMates!</h1>
-        <p>
-          Discover a smarter way to connect, share, and swap what matters most.
-          Whether it’s ideas, skills, or experiences — SwapMates makes it simple, fun,
-          and rewarding to find the right match for you.
-        </p>
+        <p>Discover a smarter way to connect, share, and swap...</p>
         <a href="#" class="btn-secondary">Learn More</a>
       </div>
       <div class="image-box">
         <img src="assets/2.png" alt="Creative Work Illustration">
       </div>
     </section>
+
+    <!-- ABOUT SECTION -->
+<!-- ABOUT SECTION -->
+<section id="about" class="container" style="display:none;">
+  <div class="text-box">
+    <h1>About Us</h1>
+    <p>
+      SwapMates is designed to help students navigate academic tasks more fairly and confidently. 
+      Many face unclear expectations and a lack of trust when collaborating, which can lead to stress or unfair outcomes. 
+      This platform offers a structured, values-based solution that empowers students and improves the way academic work is shared. 
+    </p>
+    <p>
+      SwapMates is a platform that helps students manage academic tasks through fair and organized collaboration. 
+      It allows users to exchange work, set clear expectations, and communicate responsibly. 
+      The system supports ethical practices and provides tools to make academic sharing safer and more transparent—for both students and commissioners.
+    </p>
   </div>
+
+  <div class="image-box">
+    <img src="assets/1.png" alt="About SwapMates Illustration">
+  </div>
+</section>
+
+
+<!-- PRICING SECTION -->
+<section id="pricing" class="container" style="display:none;">
+  <div class="text-box" style="grid-column: span 2; text-align: center;">
+    <h1>Pricing</h1>
+    <p>Choose the plan that fits you best.</p>
+  </div>
+
+  <div class="pricing-cards">
+  <!-- Free Plan -->
+  <div class="pricing-card">
+    <h3 style="color: #0a9d8c;">Free</h3>
+    <p><i>30 days trial</i></p>
+    <ul>
+      <li>✔ Basic access</li>
+      <li>✘ Limited swaps</li>
+      <li>✘ No verified badge</li>
+    </ul>
+    <a href="#" class="btn-secondary">Start Free</a>
+  </div>
+
+  <!-- Standard Plan -->
+  <div class="pricing-card standard">
+    <h3 style="color: #0a9d8c;">Standard</h3>
+    <p style="font-size: 1.5rem; font-weight: bold;">₱149<span style="font-size: 1rem;">/month</span></p>
+    <ul>
+      <li>✔ More swaps</li>
+      <li>✔ Basic support</li>
+      <li>✘ No verified badge</li>
+    </ul>
+    <a href="#" class="btn-secondary">Choose Standard</a>
+  </div>
+
+  <!-- Premium Plan -->
+  <div class="pricing-card premium">
+    <h3>Premium</h3>
+    <p style="font-size: 2rem; font-weight: bold;">₱299<span style="font-size: 1rem;">/month</span></p>
+    <ul>
+      <li>✔ Unlimited swaps</li>
+      <li>✔ Verified profile</li>
+      <li>✔ Priority support</li>
+    </ul>
+    <a href="#" class="btn">Go Premium</a>
+  </div>
+</div>
+
+  </div>
+</section>
+
+
+
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      document.querySelectorAll("section").forEach(sec => sec.style.display = "none");
+      // Show selected
+      document.getElementById(sectionId).style.display = "grid";
+    }
+  </script>
 </body>
 
+
 </html>
+
+
+
+
