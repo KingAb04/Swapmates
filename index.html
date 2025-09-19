@@ -16,10 +16,13 @@
       justify-content: center;
       align-items: center;
     }
+.container {
+  overflow-y: hidden;  /* hide vertical fascrollbar */
+}
 
     .card {
   background: white;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   min-height: 700px;   /* para kahit anong section same height */
   border-radius: 15px;
@@ -28,7 +31,10 @@
   overflow: hidden;
 }
 
-
+#about .image-box img {
+  max-width: 100%;
+  height: auto;
+}
 
     header {
   display: flex;
@@ -93,7 +99,7 @@
   min-height: 600px;   /* minimum height */
   max-height: 600px;   /* fixed height para pare-pareho */
   box-sizing: border-box;
-  overflow-y: hidden;    /* scroll kung mahaba content */
+  overflow-y: auto;    /* scroll kung mahaba content */
 }
 
     .text-box h1 {
@@ -197,8 +203,15 @@
 .pricing-card .btn-secondary {
   display: inline-block;
   margin-top: 15px;
+  
 }
-
+.pricing-card.standard .btn {
+  background: rgb(230, 189, 57);
+  color: #ffffff;
+}.pricing-card.free .btn {
+  background: rgb(230, 189, 57);
+  color: #ffffff;
+}
 .pricing-card.premium .btn {
   background: white;
   color: #0a9d8c;
@@ -252,14 +265,10 @@
       It allows users to exchange work, set clear expectations, and communicate responsibly. 
       The system supports ethical practices and provides tools to make academic sharing safer and more transparent—for both students and commissioners.
     </p>
-    <p>
-      <b>Problem & Solution:</b> SwapMates solves student collaboration issues by offering a clear, fair, and secure platform for academic exchanges. 
-      It sets expectations, promotes integrity, and builds trust. Earnings come from premium features, service fees, and optional subscriptions for added tools and verified profiles.
-    </p>
   </div>
 
   <div class="image-box">
-    <img src="assets/2.png" alt="About SwapMates Illustration">
+    <img src="assets/1.png" alt="About SwapMates Illustration">
   </div>
 </section>
 
@@ -273,15 +282,17 @@
 
   <div class="pricing-cards">
   <!-- Free Plan -->
-  <div class="pricing-card">
+  <div class="pricing-card free">
     <h3 style="color: #0a9d8c;">Free</h3>
-    <p><i>30 days trial</i></p>
+        <p style="font-size: 1.5rem; font-weight: bold;">30 days trial<span style="font-size: 1rem;"></span></p>
+
+    
     <ul>
       <li>✔ Basic access</li>
       <li>✘ Limited swaps</li>
       <li>✘ No verified badge</li>
     </ul>
-    <a href="#" class="btn-secondary">Start Free</a>
+    <a href="#" class="btn">Start Free</a>
   </div>
 
   <!-- Standard Plan -->
@@ -293,13 +304,13 @@
       <li>✔ Basic support</li>
       <li>✘ No verified badge</li>
     </ul>
-    <a href="#" class="btn-secondary">Choose Standard</a>
+    <a href="#" class="btn">Choose Standard</a>
   </div>
 
   <!-- Premium Plan -->
   <div class="pricing-card premium">
     <h3>Premium</h3>
-    <p style="font-size: 2rem; font-weight: bold;">₱299<span style="font-size: 1rem;">/month</span></p>
+    <p style="font-size: 1.5rem; font-weight: bold;">₱299<span style="font-size: 1rem;">/month</span></p>
     <ul>
       <li>✔ Unlimited swaps</li>
       <li>✔ Verified profile</li>
@@ -327,3 +338,7 @@
 
 
 </html>
+
+
+
+
