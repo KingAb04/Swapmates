@@ -104,15 +104,16 @@
             initializePages();
         }
 
-        function logout() {
-            currentUser = null;
-            document.getElementById('dashboard').classList.add('hidden');
-            document.getElementById('auth-page').classList.remove('hidden');
-            
-            // Reset forms
-            document.getElementById('loginForm').reset();
-            document.getElementById('signupForm').reset();
-        }
+       function logout() {
+    // Optional: clear session/user data
+    currentUser = null;
+    document.getElementById('loginForm').reset();
+    document.getElementById('signupForm').reset();
+
+    // Redirect to index.html
+    window.location.href = "index.html";
+}
+
 
         // Page navigation
         function showPage(pageName) {
@@ -398,8 +399,7 @@ document.getElementById('send-reply').addEventListener('click', function() {
         replyInput.value = ''; // Clear the input field
     }
 });
-    </script>
-    <script>
+
         function saveProfileSettings() {
     const name = document.getElementById('profile-name').value.trim();
     const username = document.getElementById('profile-username').value.trim();
