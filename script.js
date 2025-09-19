@@ -105,13 +105,15 @@ function login(email, displayName, username) {
 
 function logout() {
     currentUser = null;
-    document.getElementById('dashboard').classList.add('hidden');
-    document.getElementById('auth-page').classList.remove('hidden');
-    
-    // Reset forms
+
+    // Reset forms (optional kasi mare-reset na rin sa reload)
     document.getElementById('loginForm').reset();
     document.getElementById('signupForm').reset();
+
+    // Redirect
+    window.location.href = "index.html";
 }
+
 
 // Page navigation
 function showPage(pageName) {
