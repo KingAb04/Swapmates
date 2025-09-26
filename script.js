@@ -21,7 +21,7 @@ let posts = [
         author: { displayName: 'Mike Chen', username: 'mike_research', avatar: 'MC' },
         category: 'science',
         postType: 'commission',
-        budget: '150 tokens',
+        budget: '150 Pesos',
         deadline: '2025-02-01',
         timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
         likes: { count: 8, icon: '👍' },
@@ -34,7 +34,7 @@ let posts = [
         author: { displayName: 'Emily Smith', username: 'emily_chem', avatar: 'ES' },
         category: 'science',
         postType: 'commission',
-        budget: '100 tokens',
+        budget: '100 Pesos',
         deadline: '2025-03-15',
         timestamp: new Date(Date.now() - 1 * 60 * 60 * 1000),
         likes: { count: 5, icon: '👍' },
@@ -47,7 +47,7 @@ let posts = [
         author: { displayName: 'John Doe', username: 'john_lit', avatar: 'JD' },
         category: 'english',
         postType: 'commission',
-        budget: '200 tokens',
+        budget: '200 Pesos',
         deadline: '2025-05-01',
         timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000),
         likes: { count: 10, icon: '👍' },
@@ -459,3 +459,20 @@ document.getElementById('search-button').addEventListener('click', function() {
     
     // Here you could implement actual search logic against your data
 });
+
+function addFunds() {
+    const amount = parseFloat(document.getElementById('wallet-amount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+
+    // Update balance (example, should be saved in DB)
+    const balanceEl = document.getElementById('wallet-balance');
+    const currentBalance = parseFloat(balanceEl.innerText.replace('₱','')) || 0;
+    balanceEl.innerText = `₱${(currentBalance + amount).toFixed(2)}`;
+
+    closeModal();
+    alert(`₱${amount.toFixed(2)} added to your e-wallet!`);
+}
+
