@@ -397,14 +397,15 @@
         <div class="right-sidebar hidden lg:block">
     <div class="space-y-4">
 
-        <!-- Token Box -->
-        <div class="card">
-            <div class="flex justify-between items-center">
-                <span class="font-semibold">Tokens</span>
-                <span class="text-xl">100</span> <!-- Replace with dynamic token count -->
-            </div>
-            <button onclick="openModal()" class="btn-primary mt-2 w-full">Buy More Tokens</button>
-        </div>
+        <!-- E-Wallet Box -->
+<div class="card">
+    <div class="flex justify-between items-center">
+        <span class="font-semibold">E-Wallet Balance</span>
+        <span class="text-xl" id="wallet-balance">₱0.00</span> <!-- Replace with dynamic balance -->
+    </div>
+    <button onclick="openModal()" class="btn-primary mt-2 w-full">Add Funds</button>
+</div>
+
 
         <!-- Trending Categories -->
         <div class="card">
@@ -446,17 +447,16 @@
     </div>
 </div>
 
-<!-- Modal for Buying Tokens -->
 <div id="buy-token-modal" class="modal hidden">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h2 class="font-semibold">Buy Tokens</h2>
-        <p>Select a payment method to buy more tokens.</p>
+        <h2 class="font-semibold">Add Funds to E-Wallet</h2>
+        <p>Select a payment method to add funds.</p>
         
         <div class="space-y-4 mt-4">
             <div>
-                <label for="token-amount" class="block text-sm">Amount of Tokens:</label>
-                <input type="number" id="token-amount" class="input" placeholder="Enter amount" min="1">
+                <label for="wallet-amount" class="block text-sm">Amount:</label>
+                <input type="number" id="wallet-amount" class="input" placeholder="Enter amount" min="1">
             </div>
             <div>
                 <label class="block text-sm">Payment Method:</label>
@@ -482,10 +482,11 @@
                 <input type="text" id="card-cvc" class="input" placeholder="Enter CVC">
             </div>
             
-            <button class="btn-primary mt-4" onclick="purchaseTokens()">Purchase</button>
+            <button class="btn-primary mt-4" onclick="addFunds()">Add Funds</button>
         </div>
     </div>
 </div>
+
     </div>
   <!-- Footer -->
 <footer class="footer-container">
