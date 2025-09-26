@@ -528,6 +528,22 @@
     &copy; 2025 SwapMates. All Rights Reserved.
   </div>
 </footer>
+    <script>function addFunds() {
+    const amount = parseFloat(document.getElementById('wallet-amount').value);
+    if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+    }
+
+    // Update balance (example, should be saved in DB)
+    const balanceEl = document.getElementById('wallet-balance');
+    const currentBalance = parseFloat(balanceEl.innerText.replace('₱','')) || 0;
+    balanceEl.innerText = `₱${(currentBalance + amount).toFixed(2)}`;
+
+    closeModal();
+    alert(`₱${amount.toFixed(2)} added to your e-wallet!`);
+}
+    </script>
 <script src="script.js"></script> 
 
 </body>
