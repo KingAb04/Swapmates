@@ -2,51 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SwapMates - Academic Collaboration Platform</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwapMates - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-
 <body>
   <!-- Dashboard -->
-  <div id="dashboard" class="min-h-screen flex bg-white">
+  <div id="dashboard" class="hidden min-h-screen flex bg-white">
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Logo -->
       <div class="p-4 border-b border-gray-200">
         <div class="flex items-center justify-center space-x-2 mb-4">
-          <img src="logo.png" alt="SwapMates Logo" class="logo">
+          <img src="logo.png" alt="SwapMates Logo" class="logo" />
         </div>
       </div>
 
       <!-- Navigation -->
       <nav class="flex-1 p-4">
         <div class="space-y-2">
-          <button onclick="showPage('home')" class="nav-btn active-nav w-full flex items-center space-x-3">
-            <i data-lucide="home" class="w-5 h-5"></i><span>Home</span>
+          <button onclick="showPage('home')" class="nav-btn active-nav btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="home" class="w-5 h-5"></i> <span>Home</span>
           </button>
-          <button onclick="showPage('categories')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="grid-3x3" class="w-5 h-5"></i><span>Categories</span>
+          <button onclick="showPage('categories')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="grid-3x3" class="w-5 h-5"></i> <span>Categories</span>
           </button>
-          <button onclick="showPage('commission')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="dollar-sign" class="w-5 h-5"></i><span>Commission</span>
+          <button onclick="showPage('commission')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="dollar-sign" class="w-5 h-5"></i> <span>Commission</span>
           </button>
-          <button onclick="showPage('connections')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="users" class="w-5 h-5"></i><span>Connections</span>
+          <button onclick="showPage('search')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="search" class="w-5 h-5"></i> <span>Search</span>
           </button>
-          <button onclick="showPage('search')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="search" class="w-5 h-5"></i><span>Search</span>
+          <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="bell" class="w-5 h-5"></i> <span>Notifications</span>
           </button>
-          <button onclick="showPage('notifications')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="bell" class="w-5 h-5"></i><span>Notifications</span>
+          <button onclick="showPage('messages')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="mail" class="w-5 h-5"></i> <span>Messages</span>
           </button>
-          <button onclick="showPage('messages')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="mail" class="w-5 h-5"></i><span>Messages</span>
-          </button>
-          <button onclick="showPage('profile')" class="nav-btn w-full flex items-center space-x-3">
-            <i data-lucide="user" class="w-5 h-5"></i><span>Profile</span>
+          <button onclick="showPage('profile')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+            <i data-lucide="user" class="w-5 h-5"></i> <span>Profile</span>
           </button>
         </div>
       </nav>
@@ -61,66 +58,225 @@
           </div>
         </div>
         <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2">
-          <i data-lucide="log-out" class="w-4 h-4"></i><span>Sign Out</span>
+          <i data-lucide="log-out" class="w-4 h-4"></i> <span>Sign Out</span>
         </button>
       </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <!-- Pages (unchanged, same as dati: home, categories, commission, search, notifications, messages, profile) -->
-      <!-- TODO: add new Connections Page -->
-      <div id="connections-page" class="page hidden">
+      <!-- Home Page -->
+      <div id="home-page" class="page">
         <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-          <h1 class="text-xl font-bold">Connections</h1>
-          <p class="text-gray-600">Manage and discover your academic network</p>
+          <h1 class="text-xl font-bold">Home</h1>
         </div>
-        <div class="p-8 text-gray-500">
-          <p>No connections yet. Start by searching and adding classmates or collaborators.</p>
+        <div class="border-b border-gray-200 p-4">
+          <div class="flex space-x-3">
+            <div class="avatar"><span id="create-post-avatar">SU</span></div>
+            <div class="flex-1 space-y-3">
+              <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
+              <div class="grid grid-cols-2 gap-3">
+                <select id="post-type" class="select">
+                  <option value="">Select post type</option>
+                  <option value="exchange">📄 Exchange</option>
+                  <option value="commission">💰 Commission</option>
+                  <option value="help">⏰ Need Help</option>
+                </select>
+                <select id="post-category" class="select">
+                  <option value="">Select category</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="science">Science</option>
+                  <option value="english">English</option>
+                  <option value="history">History</option>
+                  <option value="computer-science">Computer Science</option>
+                  <option value="art">Art & Design</option>
+                  <option value="business">Business</option>
+                  <option value="psychology">Psychology</option>
+                </select>
+              </div>
+              <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
+                <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)" />
+                <input type="date" id="post-deadline" class="input" />
+              </div>
+              <div class="flex items-center justify-between pt-3 border-t border-gray-200">
+                <span class="text-sm text-gray-500"><span id="char-count">0</span>/280</span>
+                <button onclick="createPost()" class="btn-primary">Post</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="feed" class="overflow-y-auto"><!-- Posts --></div>
+      </div>
+
+      <!-- Categories Page -->
+      <div id="categories-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+          <h1 class="text-xl font-bold">Categories</h1>
+          <p class="text-gray-600">Browse academic tasks by subject</p>
+        </div>
+        <div class="p-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="categories-grid"></div>
         </div>
       </div>
 
-      <!-- (keep lahat ng existing Home, Categories, Commission, Search, Notifications, Messages, Profile, etc.) -->
+      <!-- Commission Page -->
+      <div id="commission-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+          <h1 class="text-xl font-bold">Commission Board</h1>
+          <p class="text-gray-600">Find paid academic work opportunities</p>
+        </div>
+        <div class="p-4">
+          <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="card text-center"><p class="text-2xl font-bold">127</p><p class="text-xs text-gray-500">Active Commissions</p></div>
+            <div class="card text-center"><p class="text-2xl font-bold">2.4h</p><p class="text-xs text-gray-500">Avg. Response Time</p></div>
+            <div class="card text-center"><p class="text-2xl font-bold">94%</p><p class="text-xs text-gray-500">Success Rate</p></div>
+          </div>
+          <div id="commission-feed"></div>
+        </div>
+      </div>
+
+      <!-- Search Page -->
+      <div id="search-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4"><h1 class="text-xl font-bold">Search</h1></div>
+        <div class="p-8">
+          <div class="flex justify-center mb-4">
+            <input type="text" id="search-input" placeholder="Search for posts or users..." class="border rounded p-2 w-1/2" />
+            <button id="search-button" class="ml-2 bg-blue-500 text-white rounded px-4 py-2">Search</button>
+          </div>
+          <div id="search-results" class="text-center text-gray-500"><p>No results found.</p></div>
+        </div>
+      </div>
+
+      <!-- Notifications Page -->
+      <div id="notifications-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4"><h1 class="text-xl font-bold">Notifications</h1></div>
+        <div class="p-8">
+          <div class="notification-item border-b border-gray-200 py-4"><p class="font-medium">John Doe commented on your post.</p><span class="text-sm text-gray-500">2 hours ago</span></div>
+          <div class="notification-item border-b border-gray-200 py-4"><p class="font-medium">You have a new follower: Jane Smith.</p><span class="text-sm text-gray-500">5 hours ago</span></div>
+          <div class="notification-item border-b border-gray-200 py-4"><p class="font-medium">Your post was liked by Mike Chen.</p><span class="text-sm text-gray-500">1 day ago</span></div>
+        </div>
+      </div>
+
+      <!-- Messages Page -->
+      <div id="messages-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4"><h1 class="text-xl font-bold">Messages</h1></div>
+        <div class="p-8">
+          <div id="message-list" class="message-list">
+            <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('1')">
+              <p class="font-medium">John Doe: Hey, how's it going?</p><span class="text-sm text-gray-500">2 hours ago</span>
+            </div>
+            <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('2')">
+              <p class="font-medium">Jane Smith: Are we still on for the meeting?</p><span class="text-sm text-gray-500">5 hours ago</span>
+            </div>
+          </div>
+          <div class="text-center text-gray-500 my-4 hidden" id="no-messages"><p>No messages yet</p></div>
+        </div>
+      </div>
+
+      <!-- Profile Page -->
+      <div id="profile-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4"><h1 class="text-xl font-bold">Profile Settings</h1></div>
+        <div class="p-8">
+          <form id="profile-settings-form" class="space-y-6">
+            <div>
+              <label for="profile-name" class="block text-sm font-medium">Display Name</label>
+              <input type="text" id="profile-name" class="input" placeholder="Your full name" required />
+            </div>
+            <div>
+              <label for="profile-username" class="block text-sm font-medium">Username</label>
+              <input type="text" id="profile-username" class="input" placeholder="Choose a username" required />
+            </div>
+            <div>
+              <label for="profile-email" class="block text-sm font-medium">Email</label>
+              <input type="email" id="profile-email" class="input" placeholder="Enter your email" required />
+            </div>
+            <div>
+              <label for="profile-password" class="block text-sm font-medium">New Password</label>
+              <input type="password" id="profile-password" class="input" placeholder="Create a new password" />
+            </div>
+            <div>
+              <label for="profile-confirm-password" class="block text-sm font-medium">Confirm Password</label>
+              <input type="password" id="profile-confirm-password" class="input" placeholder="Confirm your new password" />
+            </div>
+            <div class="flex justify-between">
+              <button type="button" onclick="saveProfileSettings()" class="btn-primary">Save Changes</button>
+              <button type="button" onclick="cancelProfileSettings()" class="btn-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
 
     <!-- Right Sidebar -->
     <div class="right-sidebar hidden lg:block">
-      <!-- keep yung e-wallet, trending, stats -->
-    </div>
-  </div>
+      <div class="space-y-4">
+        <div class="card">
+          <div class="flex justify-between items-center">
+            <span class="font-semibold">E-Wallet Balance</span>
+            <span class="text-xl" id="wallet-balance">₱0.00</span>
+          </div>
+          <button onclick="openModal()" class="btn-primary mt-2 w-full">Add Funds</button>
+        </div>
 
-  <!-- Footer -->
-  <footer class="footer-container">
-    <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-700">
-      <div>
-        <h2 class="text-xl font-bold text-accent mb-3">SwapMates</h2>
-        <p class="text-sm leading-relaxed">
-          A collaborative academic platform where students and learners connect, share knowledge, and exchange resources to grow together.
-        </p>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
-        <ul class="space-y-2 text-sm">
-          <li>📍 Manila, Philippines</li>
-          <li>📧 support@swapmates.com</li>
-          <li>📞 +63 912 345 6789</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
-        <div class="flex space-x-4">
-          <a href="#" class="footer-social"><i data-lucide="facebook"></i></a>
-          <a href="#" class="footer-social"><i data-lucide="twitter"></i></a>
-          <a href="#" class="footer-social"><i data-lucide="instagram"></i></a>
-          <a href="#" class="footer-social"><i data-lucide="linkedin"></i></a>
+        <div class="card">
+          <h3 class="font-semibold mb-2">Trending Categories</h3>
+          <div class="space-y-2">
+            <div class="flex justify-between text-sm"><span>Computer Science</span><span class="text-gray-500">189 posts</span></div>
+            <div class="flex justify-between text-sm"><span>Mathematics</span><span class="text-gray-500">156 posts</span></div>
+            <div class="flex justify-between text-sm"><span>Science</span><span class="text-gray-500">134 posts</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="font-semibold mb-2">Quick Stats</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span>Active Users</span><span class="text-gray-500">2,847</span></div>
+            <div class="flex justify-between"><span>Today's Posts</span><span class="text-gray-500">124</span></div>
+            <div class="flex justify-between"><span>Success Rate</span><span class="text-gray-500">94%</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="border-t border-gray-200 mt-8 py-4 text-center text-sm">
-      &copy; 2025 SwapMates. All Rights Reserved.
-    </div>
-  </footer>
 
-  <script src="script.js"></script>
+    <!-- Buy Token Modal -->
+    <div id="buy-token-modal" class="modal hidden">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 class="font-semibold">Add Funds to E-Wallet</h2>
+        <p>Select a payment method to add funds.</p>
+        <div class="space-y-4 mt-4">
+          <div>
+            <label for="wallet-amount" class="block text-sm">Amount:</label>
+            <input type="number" id="wallet-amount" class="input" placeholder="Enter amount" min="1" />
+          </div>
+          <div>
+            <label class="block text-sm">Payment Method:</label>
+            <select id="payment-method" class="select" onchange="togglePaymentFields()">
+              <option value="gcash">Gcash</option>
+              <option value="credit-card">Credit Card</option>
+            </select>
+          </div>
+          <div id="gcash-fields" class="payment-fields">
+            <label for="gcash-number" class="block text-sm">Gcash Number:</label>
+            <input type="text" id="gcash-number" class="input" placeholder="Enter Gcash number" />
+          </div>
+          <div id="credit-card-fields" class="payment-fields hidden">
+            <label for="credit-card-number" class="block text-sm">Credit Card Number:</label>
+            <input type="text" id="credit-card-number" class="input" placeholder="Enter credit card number" />
+            <label for="card-expiry" class="block text-sm mt-2">Expiry Date:</label>
+            <input type="text" id="card-expiry" class="input" placeholder="MM/YY" />
+            <label for="card-cvc" class="block text-sm mt-2">CVC:</label>
+            <input type="text" id="card-cvc" class="input" placeholder="Enter CVC" />
+          </div>
+          <button class="btn-primary mt-4" onclick="addFunds()">Add Funds</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
