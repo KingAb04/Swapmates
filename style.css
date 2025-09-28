@@ -265,6 +265,217 @@
     margin-bottom: 1rem;
 }
 
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url("assets/blobs.jpg") no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+.container {
+  overflow-y: hidden;  /* hide vertical fascrollbar */
+}
+
+    .card {
+  background: white;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 700px;   /* para kahit anong section same height */
+  border-radius: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+#about .image-box img {
+  max-width: 100%;
+  height: auto;
+}
+
+    header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px; /* reduced vertical padding */
+  background: white;
+}
+
+    /* Logo container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+        padding-left: 25px;
+        padding-top: 10px;
+  height: 75px;   /* bigger logo */
+  width: auto;    /* keep proportions */
+  display: block;
+}
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .btn {
+      background: #f6c30b;
+      padding: 10px 20px;
+      border-radius: 25px;
+      color: #fff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #b68929;
+    }
+
+    .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 60px 80px;
+
+  /* Fixed size */
+  min-height: 600px;   /* minimum height */
+  max-height: 600px;   /* fixed height para pare-pareho */
+  box-sizing: border-box;
+  overflow-y: hidden;    /* scroll kung mahaba content */
+}
+
+    .text-box h1 {
+      font-size: 3rem;
+      color: #0a9d8c;  /* teal headline */
+      margin: 0;
+    }
+
+    .text-box p {
+      color: #666;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+
+    .text-box .btn-secondary {
+      background: #d66941;
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .image-box img {
+      max-width: 100%;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 1024px) {
+      .logo-container img {
+        height: 35px; /* slightly smaller on tablet */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-container img {
+        height: 30px; /* smaller logo on mobile */
+      }
+
+      .container {
+        grid-template-columns: 1fr; /* stack text + image */
+        padding: 40px 20px;
+        text-align: center;
+      }
+
+      nav ul li {
+        margin-left: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-container img {
+        height: 25px; /* tiny logo on extra small screens */
+      }
+    }
+    /* Pricing container */
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* Each pricing card */
+/* Each pricing card */
+.pricing-card {
+  flex: 0 0 300px;      /* dati 300px → paliitin */
+  max-width: 275px;
+  background: #fff;
+  text-align: center;
+  padding: 20px;        /* mas compact */
+  border: 2px solid #ddd;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+/* Standard card with light background */
+.pricing-card.standard {
+  background: #f0fdfa;   /* light teal */
+  border: 2px solid #0a9d8c;
+}
+
+/* Premium card highlight */
+.pricing-card.premium {
+  border: 2px solid #0a9d8c;
+  background: linear-gradient(135deg, #0a9d8c, #38b2ac);
+  color: white;
+}
+
+
+/* List inside card */
+.pricing-card ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  margin: 20px 0;
+}
+
+/* Buttons inside pricing */
+.pricing-card .btn-secondary {
+  display: inline-block;
+  margin-top: 15px;
+  
+}
+.pricing-card.standard .btn {
+  background: rgb(230, 189, 57);
+  color: #ffffff;
+}.pricing-card.free .btn {
+  background: rgb(230, 189, 57);
+  color: #ffffff;
+}
+.pricing-card.premium .btn {
+  background: white;
+  color: #0a9d8c;
+}
+
 .textarea {
     background-color: var(--input-background);
     border: 1px solid var(--border);
