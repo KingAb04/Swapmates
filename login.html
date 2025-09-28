@@ -160,54 +160,59 @@
         </div>
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Home Page -->
-            <div id="home-page" class="page">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Home</h1>
+<!-- Home Page -->
+<div id="home-page" class="page">
+    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+        <h1 class="text-xl font-bold">Home</h1>
+    </div>
+    <div class="p-4">
+        <!-- Create Post and Feed in the same container -->
+        <div id="post-container">
+            <!-- Create Post -->
+            <div class="flex space-x-3 mb-6">
+                <div class="avatar">
+                    <span id="create-post-avatar">SU</span>
                 </div>
-                <div class="border-b border-gray-200 p-4">
-                    <div class="flex space-x-3">
-                        <div class="avatar">
-                            <span id="create-post-avatar">SU</span>
-                        </div>
-                        <div class="flex-1 space-y-3">
-                            <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
-                            <div class="grid grid-cols-2 gap-3">
-                                <select id="post-type" class="select">
-                                    <option value="">Select post type</option>
-                                    <option value="exchange">📄 Exchange</option>
-                                    <option value="commission">💰 Commission</option>
-                                    <option value="help">⏰ Need Help</option>
-                                </select>
-                                <select id="post-category" class="select">
-                                    <option value="">Select category</option>
-                                    <option value="mathematics">Mathematics</option>
-                                    <option value="science">Science</option>
-                                    <option value="english">English</option>
-                                    <option value="history">History</option>
-                                    <option value="computer-science">Computer Science</option>
-                                    <option value="art">Art & Design</option>
-                                    <option value="business">Business</option>
-                                    <option value="psychology">Psychology</option>
-                                </select>
-                            </div>
-                            <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
-                                <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)">
-                                <input type="date" id="post-deadline" class="input">
-                            </div>
-                            <div class="flex items-center justify-between pt-3 border-t border-gray-200">
-                                <span class="text-sm text-gray-500">
-                                    <span id="char-count">0</span>/280
-                                </span>
-                                <button onclick="createPost()" class="btn-primary">Post</button>
-                            </div>
-                        </div>
+                <div class="flex-1 space-y-3">
+                    <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
+                    <div class="grid grid-cols-2 gap-3">
+                        <select id="post-type" class="select">
+                            <option value="">Select post type</option>
+                            <option value="exchange">📄 Exchange</option>
+                            <option value="commission">💰 Commission</option>
+                            <option value="help">⏰ Need Help</option>
+                        </select>
+                        <select id="post-category" class="select">
+                            <option value="">Select category</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                            <option value="computer-science">Computer Science</option>
+                            <option value="art">Art & Design</option>
+                            <option value="business">Business</option>
+                            <option value="psychology">Psychology</option>
+                        </select>
+                    </div>
+                    <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
+                        <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)">
+                        <input type="date" id="post-deadline" class="input">
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-gray-200">
+                        <span class="text-sm text-gray-500">
+                            <span id="char-count">0</span>/280
+                        </span>
+                        <button onclick="createPost()" class="btn-primary">Post</button>
                     </div>
                 </div>
-                <div id="feed" class="overflow-y-auto">
-                    <!-- Posts will be dynamically added here -->
-                </div>
             </div>
+            <!-- Posts Feed -->
+            <div id="feed" class="overflow-y-auto">
+                <!-- Posts will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+</div>
             <!-- Categories Page -->
             <div id="categories-page" class="page hidden">
                 <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
