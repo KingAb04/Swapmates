@@ -119,10 +119,7 @@
                         <i data-lucide="dollar-sign" class="w-5 h-5"></i>
                         <span>Commission</span>
                     </button>
-                    <button onclick="showPage('search')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                        <span>Search</span>
-                    </button>
+                    <!-- Removed Search from navigation -->
                     <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
                         <i data-lucide="bell" class="w-5 h-5"></i>
                         <span>Notifications</span>
@@ -162,8 +159,11 @@
         <div class="main-content">
 <!-- Home Page -->
 <div id="home-page" class="page">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+    <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
         <h1 class="text-xl font-bold">Home</h1>
+        <button onclick="showPage('search')" class="ml-2 p-2 rounded-full hover:bg-gray-100 focus:outline-none" title="Search">
+            <i data-lucide="search" class="w-6 h-6"></i>
+        </button>
     </div>
     <div class="p-4">
         <!-- Create Post and Feed in the same container -->
@@ -505,6 +505,10 @@
             closeModal();
             alert(`₱${amount.toFixed(2)} added to your e-wallet!`);
         }
+        // Initialize Lucide icons
+        document.addEventListener("DOMContentLoaded", function() {
+            if (window.lucide) lucide.createIcons();
+        });
     </script>
     <script src="script.js"></script>
 </body>
