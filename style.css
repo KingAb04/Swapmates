@@ -409,6 +409,28 @@
       }
     }
 
+    .nav-btn {
+        background-color: transparent;
+        color: var(--foreground);
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius);
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+        transition: background-color 0.2s, color 0.2s;
+    }
+
+    .nav-btn:hover {
+        background-color: var(--accent);
+        color: var(--primary-foreground);
+    }
+
+    .nav-btn.active-nav {
+        background-color: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: var(--radius);
+    }
+    
     @media (max-width: 480px) {
       .logo-container img {
         height: 25px; /* tiny logo on extra small screens */

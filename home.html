@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwapMates - Academic Collaboration Platform</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+
+<body>
+  <!-- Dashboard -->
+  <div id="dashboard" class="min-h-screen flex bg-white">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Logo -->
+      <div class="p-4 border-b border-gray-200">
+        <div class="flex items-center justify-center space-x-2 mb-4">
+          <img src="logo.png" alt="SwapMates Logo" class="logo">
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 p-4">
+        <div class="space-y-2">
+          <button onclick="showPage('home')" class="nav-btn active-nav w-full flex items-center space-x-3">
+            <i data-lucide="home" class="w-5 h-5"></i><span>Home</span>
+          </button>
+          <button onclick="showPage('categories')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="grid-3x3" class="w-5 h-5"></i><span>Categories</span>
+          </button>
+          <button onclick="showPage('commission')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="dollar-sign" class="w-5 h-5"></i><span>Commission</span>
+          </button>
+          <button onclick="showPage('connections')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="users" class="w-5 h-5"></i><span>Connections</span>
+          </button>
+          <button onclick="showPage('search')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="search" class="w-5 h-5"></i><span>Search</span>
+          </button>
+          <button onclick="showPage('notifications')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="bell" class="w-5 h-5"></i><span>Notifications</span>
+          </button>
+          <button onclick="showPage('messages')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="mail" class="w-5 h-5"></i><span>Messages</span>
+          </button>
+          <button onclick="showPage('profile')" class="nav-btn w-full flex items-center space-x-3">
+            <i data-lucide="user" class="w-5 h-5"></i><span>Profile</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- User Profile -->
+      <div class="p-4 border-t border-gray-200">
+        <div class="flex items-center space-x-3 mb-3">
+          <div class="avatar"><span id="user-avatar">SU</span></div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium truncate" id="user-name">SAMPLE USER</p>
+            <p class="text-xs text-gray-500 truncate" id="user-username">@SAMPLE</p>
+          </div>
+        </div>
+        <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2">
+          <i data-lucide="log-out" class="w-4 h-4"></i><span>Sign Out</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Pages (unchanged, same as dati: home, categories, commission, search, notifications, messages, profile) -->
+      <!-- TODO: add new Connections Page -->
+      <div id="connections-page" class="page hidden">
+        <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
+          <h1 class="text-xl font-bold">Connections</h1>
+          <p class="text-gray-600">Manage and discover your academic network</p>
+        </div>
+        <div class="p-8 text-gray-500">
+          <p>No connections yet. Start by searching and adding classmates or collaborators.</p>
+        </div>
+      </div>
+
+      <!-- (keep lahat ng existing Home, Categories, Commission, Search, Notifications, Messages, Profile, etc.) -->
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar hidden lg:block">
+      <!-- keep yung e-wallet, trending, stats -->
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-container">
+    <div class="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-700">
+      <div>
+        <h2 class="text-xl font-bold text-accent mb-3">SwapMates</h2>
+        <p class="text-sm leading-relaxed">
+          A collaborative academic platform where students and learners connect, share knowledge, and exchange resources to grow together.
+        </p>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-3">Contact Us</h3>
+        <ul class="space-y-2 text-sm">
+          <li>📍 Manila, Philippines</li>
+          <li>📧 support@swapmates.com</li>
+          <li>📞 +63 912 345 6789</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="footer-social"><i data-lucide="facebook"></i></a>
+          <a href="#" class="footer-social"><i data-lucide="twitter"></i></a>
+          <a href="#" class="footer-social"><i data-lucide="instagram"></i></a>
+          <a href="#" class="footer-social"><i data-lucide="linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-gray-200 mt-8 py-4 text-center text-sm">
+      &copy; 2025 SwapMates. All Rights Reserved.
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
