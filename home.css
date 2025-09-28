@@ -1,0 +1,16 @@
+@import url('index.css');
+
+/* Specific styles for home page */
+.sidebar {
+  width: 16rem;
+  height: 100vh;
+  background-color: var(--background);
+  border-right: 1px solid var(--border);
+}
+
+.main-content {
+  flex: 1;
+  border-left: 1px solid var(--border);
+}
+
+/* Additional styles can be added here as needed */
