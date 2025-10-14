@@ -6,6 +6,30 @@
     <title>SwapMates - Academic Collaboration Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --background: #f9fafb;
+            --foreground: #222;
+            --primary: #2563eb;
+            --primary-foreground: #fff;
+            --accent: #e0e7ff;
+            --radius: 0.5rem;
+        }
+        .dark {
+            --background: #313338;
+            --foreground: #dbdee1;
+            --primary: #5865f2;
+            --primary-foreground: #fff;
+            --accent: #23272a;
+        }
+        body, .main-content, .sidebar, .right-sidebar, .card, .modal-content, .page {
+            background-color: var(--background) !important;
+            color: var(--foreground) !important;
+        }
+        .btn-primary, .btn-secondary, .btn-ghost {
+            transition: background 0.2s, color 0.2s;
+        }
+    </style>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <style>
@@ -95,7 +119,12 @@
     </div>
 
     <!-- Dashboard -->
-    <div id="dashboard" class="hidden min-h-screen flex bg-white">
+    <div id="dashboard" class="hidden min-h-screen flex bg-white relative">
+        <!-- Dark mode toggle -->
+        <button id="dark-toggle" class="absolute top-2 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="Toggle dark mode" onclick="toggleDarkMode()">
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+        </button>
         <!-- Sidebar -->
         <div class="sidebar">
             <!-- Logo -->
@@ -175,7 +204,15 @@
                 </div>
                 <div class="flex-1 space-y-3">
                     <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
-                    <div class="grid grid-cols-2 gap-3">
+                    <div class="flex items-center gap-3 mt-2">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <i data-lucide="image" class="w-5 h-5 text-gray-500"></i>
+                            <input type="file" id="post-attachment" class="hidden" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" onchange="previewAttachment(event)">
+                            <span class="text-sm text-gray-600">Attach file</span>
+                        </label>
+                        <div id="attachment-preview" class="flex items-center gap-2"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 mt-2">
                         <select id="post-type" class="select">
                             <option value="">Select post type</option>
                             <option value="exchange">📄 Exchange</option>
@@ -303,33 +340,75 @@
                     </div>
                 </div>
             </div>
-            <div id="messages-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Messages</h1>
-                </div>
-                <div class="p-8">
-                    <div id="message-list" class="message-list">
-                        <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('1')">
-                            <p class="font-medium">John Doe: Hey, how's it going?</p>
-                            <span class="text-sm text-gray-500">2 hours ago</span>
+            <div id="messages-page" class="page hidden h-full">
+                <div class="flex h-[80vh] bg-white rounded-lg shadow overflow-hidden">
+                    <!-- Sidebar: Conversation List -->
+                    <div class="w-1/3 border-r border-gray-200 bg-gray-50 flex flex-col">
+                        <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                            <h2 class="text-lg font-bold">Chats</h2>
+                            <button class="p-2 rounded-full hover:bg-gray-200" title="New Message">
+                                <i data-lucide="edit-3" class="w-5 h-5"></i>
+                            </button>
                         </div>
-                        <div class="message-item border-b border-gray-200 py-4 cursor-pointer" onclick="openMessageModal('2')">
-                            <p class="font-medium">Jane Smith: Are we still on for the meeting?</p>
-                            <span class="text-sm text-gray-500">5 hours ago</span>
+                        <div id="conversation-list" class="flex-1 overflow-y-auto">
+                            <!-- Example conversations -->
+                            <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-200 transition" onclick="openConversation('1')">
+                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium truncate">John Doe</span>
+                                        <span class="text-xs text-gray-400 ml-2">2h</span>
+                                    </div>
+                                    <span class="text-sm text-gray-500 truncate">Hey, how's it going?</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-200 transition" onclick="openConversation('2')">
+                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-700">JS</div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-center">
+                                        <span class="font-medium truncate">Jane Smith</span>
+                                        <span class="text-xs text-gray-400 ml-2">5h</span>
+                                    </div>
+                                    <span class="text-sm text-gray-500 truncate">Are we still on for the meeting?</span>
+                                </div>
+                            </div>
+                            <!-- Add more conversations here -->
+                        </div>
+                        <div class="text-center text-gray-400 py-4 hidden" id="no-conversations">
+                            <p>No conversations yet</p>
                         </div>
                     </div>
-                    <div class="text-center text-gray-500 my-4 hidden" id="no-messages">
-                        <p>No messages yet</p>
-                    </div>
-                </div>
-                <!-- Modal for Chat -->
-                <div id="message-modal" class="modal hidden">
-                    <div class="modal-content">
-                        <span class="close" onclick="closeMessageModal()">&times;</span>
-                        <div id="opened-message" class="opened-message"></div>
-                        <div id="chat-replies" class="chat-replies"></div>
-                        <textarea id="reply-input" class="textarea" rows="3" placeholder="Write a reply..." required></textarea>
-                        <button id="send-reply" class="btn-primary w-full mt-2">Send Reply</button>
+                    <!-- Main Chat Area -->
+                    <div class="flex-1 flex flex-col h-full">
+                        <!-- Chat Header -->
+                        <div class="p-4 border-b border-gray-200 flex items-center gap-3 bg-white">
+                            <div id="chat-avatar" class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
+                            <div class="flex-1">
+                                <span id="chat-username" class="font-medium">John Doe</span>
+                                <span class="block text-xs text-gray-400" id="chat-status">Online</span>
+                            </div>
+                            <button class="p-2 rounded-full hover:bg-gray-100" title="More">
+                                <i data-lucide="more-vertical" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                        <!-- Chat Messages -->
+                        <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
+                            <!-- Example messages -->
+                            <div class="flex items-end gap-2">
+                                <div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
+                                <div class="bg-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">Hey, how's it going?</div>
+                            </div>
+                            <div class="flex items-end gap-2 justify-end">
+                                <div class="bg-blue-500 text-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">I'm good! How about you?</div>
+                                <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center font-bold text-gray-700">SU</div>
+                            </div>
+                            <!-- Add more messages here -->
+                        </div>
+                        <!-- Chat Input -->
+                        <form class="p-4 border-t border-gray-200 bg-white flex items-center gap-3" onsubmit="sendMessage(event)">
+                            <textarea id="chat-input" class="flex-1 textarea resize-none" rows="1" placeholder="Type a message..." required></textarea>
+                            <button type="submit" class="btn-primary px-4 py-2">Send</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -458,36 +537,68 @@
             </div>
         </div>
         <div id="buy-token-modal" class="modal hidden">
-            <div class="modal-content">
+            <div class="modal-content max-w-md w-full">
                 <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="font-semibold">Add Funds to E-Wallet</h2>
-                <p>Select a payment method to add funds.</p>
-                <div class="space-y-4 mt-4">
-                    <div>
-                        <label for="wallet-amount" class="block text-sm">Amount:</label>
-                        <input type="number" id="wallet-amount" class="input" placeholder="Enter amount" min="1">
+                <h2 class="font-semibold mb-2">Add Funds to E-Wallet</h2>
+                <p class="mb-4">Select a payment method and amount to top up your balance.</p>
+                <form id="add-funds-form" onsubmit="event.preventDefault(); addFunds();">
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1">Amount (PHP):</label>
+                        <div class="flex gap-2 flex-wrap">
+                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(100)">₱100</button>
+                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(200)">₱200</button>
+                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(500)">₱500</button>
+                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(1000)">₱1,000</button>
+                            <input type="number" id="wallet-amount" class="input w-28" placeholder="Custom" min="1" style="margin-left:8px;">
+                        </div>
                     </div>
-                    <div>
-                        <label class="block text-sm">Payment Method:</label>
-                        <select id="payment-method" class="select" onchange="togglePaymentFields()">
-                            <option value="gcash">Gcash</option>
-                            <option value="credit-card">Credit Card</option>
-                        </select>
+                    <div class="mb-4">
+                        <label class="block text-sm mb-1">Payment Method:</label>
+                        <div class="flex gap-3 flex-wrap">
+                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="gcash" onclick="selectPaymentMethod('gcash')">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/GCash_logo.svg" alt="GCash" class="h-6 w-6"> GCash
+                            </button>
+                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="paymaya" onclick="selectPaymentMethod('paymaya')">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/PayMaya_Logo_2020.png" alt="PayMaya" class="h-6 w-6"> PayMaya
+                            </button>
+                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="paypal" onclick="selectPaymentMethod('paypal')">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-6 w-6"> PayPal
+                            </button>
+                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="credit-card" onclick="selectPaymentMethod('credit-card')">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Credit_card_font_awesome.svg" alt="Credit Card" class="h-6 w-6"> Credit Card
+                            </button>
+                        </div>
                     </div>
-                    <div id="gcash-fields" class="payment-fields">
-                        <label for="gcash-number" class="block text-sm">Gcash Number:</label>
-                        <input type="text" id="gcash-number" class="input" placeholder="Enter Gcash number">
+                    <div id="gcash-fields" class="payment-fields mb-3 hidden">
+                        <label for="gcash-number" class="block text-sm">GCash Number:</label>
+                        <input type="text" id="gcash-number" class="input" placeholder="Enter GCash number">
                     </div>
-                    <div id="credit-card-fields" class="payment-fields hidden">
+                    <div id="paymaya-fields" class="payment-fields mb-3 hidden">
+                        <label for="paymaya-number" class="block text-sm">PayMaya Number:</label>
+                        <input type="text" id="paymaya-number" class="input" placeholder="Enter PayMaya number">
+                    </div>
+                    <div id="paypal-fields" class="payment-fields mb-3 hidden">
+                        <label for="paypal-email" class="block text-sm">PayPal Email:</label>
+                        <input type="email" id="paypal-email" class="input" placeholder="Enter PayPal email">
+                    </div>
+                    <div id="credit-card-fields" class="payment-fields mb-3 hidden">
                         <label for="credit-card-number" class="block text-sm">Credit Card Number:</label>
                         <input type="text" id="credit-card-number" class="input" placeholder="Enter credit card number">
-                        <label for="card-expiry" class="block text-sm mt-2">Expiry Date:</label>
-                        <input type="text" id="card-expiry" class="input" placeholder="MM/YY">
-                        <label for="card-cvc" class="block text-sm mt-2">CVC:</label>
-                        <input type="text" id="card-cvc" class="input" placeholder="Enter CVC">
+                        <div class="flex gap-2 mt-2">
+                            <div class="flex-1">
+                                <label for="card-expiry" class="block text-sm">Expiry Date:</label>
+                                <input type="text" id="card-expiry" class="input" placeholder="MM/YY">
+                            </div>
+                            <div class="flex-1">
+                                <label for="card-cvc" class="block text-sm">CVC:</label>
+                                <input type="text" id="card-cvc" class="input" placeholder="CVC">
+                            </div>
+                        </div>
+                        <label for="card-name" class="block text-sm mt-2">Cardholder Name:</label>
+                        <input type="text" id="card-name" class="input" placeholder="Name on card">
                     </div>
-                    <button class="btn-primary mt-4" onclick="addFunds()">Add Funds</button>
-                </div>
+                    <button type="submit" class="btn-primary mt-4 w-full">Add Funds</button>
+                </form>
             </div>
         </div>
     </div>
