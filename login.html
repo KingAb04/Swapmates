@@ -56,79 +56,79 @@
 <body>
 <!-- Authentication Page -->
 <!-- AUTH PAGE - Enhanced Design -->
-<div id="auth-page" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 p-4">
-
+<div id="auth-page" class="min-h-screen flex items-center justify-center bg-gray-50 p-4">
   <div class="w-full max-w-md">
-    
-    <!-- CARD CONTAINER -->
-    <div class="bg-white dark:bg-[#1A1A1A] rounded-2xl shadow-xl p-8 transition-colors duration-300">
-      
-      <!-- LOGO & WELCOME TEXT -->
-      <div class="text-center mb-8">
-        <img src="logo.png" alt="SwapMates Logo" class="mx-auto w-20 h-20 mb-4">
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-2">Welcome back</h1>
-        <p class="text-gray-500 dark:text-gray-400">Sign in to your SwapMates account</p>
+
+    <!-- Login Form -->
+    <div id="login-form" class="card">
+      <div class="text-center mb-6">
+        <div class="flex items-center justify-center space-x-2 mb-4">
+          <img src="logo.png" alt="SwapMates Logo" class="logo">
+        </div>
+        <h1 class="text-2xl font-bold mb-2">Welcome back</h1>
+        <p class="text-gray-600">Sign in to your SwapMates account</p>
       </div>
 
-      <!-- LOGIN FORM -->
-      <form id="loginForm" class="space-y-6">
+      <form id="loginForm" class="space-y-4">
         <div>
-          <label for="login-email" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Email</label>
-          <input type="email" id="login-email" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Enter your email" required>
+          <label for="login-email" class="block text-sm font-medium mb-2">Email</label>
+          <input type="email" id="login-email" class="input" placeholder="Enter your email" required>
         </div>
 
         <div>
-          <label for="login-password" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Password</label>
-          <input type="password" id="login-password" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Enter your password" required>
+          <label for="login-password" class="block text-sm font-medium mb-2">Password</label>
+          <input type="password" id="login-password" class="input" placeholder="Enter your password" required>
         </div>
 
-        <button type="submit" class="btn-primary w-full bg-[#F9B44C] text-black font-semibold py-2 rounded-lg hover:bg-[#F4733B] transition duration-200">Sign In</button>
+        <button type="submit" class="btn-primary w-full">Sign In</button>
       </form>
 
-      <!-- SWITCH TO SIGNUP -->
-      <p class="text-sm text-center mt-6 text-gray-500 dark:text-gray-400">
+      <p class="text-sm text-center mt-4">
         Don't have an account?
-        <button onclick="toggleAuthForm()" class="text-[#F9B44C] hover:underline font-medium">Sign up</button>
+        <button onclick="toggleAuthForm()" class="text-blue-600 hover:underline">Sign up</button>
       </p>
+    </div>
 
-      <!-- SIGNUP FORM (Hidden initially) -->
-      <div id="signup-form" class="hidden mt-6">
-        <div class="text-center mb-6">
-          <h1 class="text-3xl font-extrabold text-gray-900 dark:text-gray-100 mb-2">Join SwapMates</h1>
-          <p class="text-gray-500 dark:text-gray-400">Create your account to start collaborating</p>
+    <!-- Signup Form -->
+    <div id="signup-form" class="card hidden">
+      <div class="text-center mb-6">
+        <div class="flex items-center justify-center space-x-2 mb-4">
+          <img src="logo.png" alt="SwapMates Logo" class="logo">
         </div>
-
-        <form id="signupForm" class="space-y-4">
-          <div>
-            <label for="signup-name" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Display Name</label>
-            <input type="text" id="signup-name" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Your full name" required>
-          </div>
-
-          <div>
-            <label for="signup-username" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Username</label>
-            <input type="text" id="signup-username" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Choose a username" required>
-          </div>
-
-          <div>
-            <label for="signup-email" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Email</label>
-            <input type="email" id="signup-email" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Enter your email" required>
-          </div>
-
-          <div>
-            <label for="signup-password" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Password</label>
-            <input type="password" id="signup-password" class="input w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-[#2A2A2A] px-4 py-2 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:ring-2 focus:ring-[#F9B44C] focus:outline-none transition" placeholder="Create a password" required>
-          </div>
-
-          <button type="submit" class="btn-primary w-full bg-[#F9B44C] text-black font-semibold py-2 rounded-lg hover:bg-[#F4733B] transition duration-200">Create Account</button>
-        </form>
-
-        <p class="text-sm text-center mt-4 text-gray-500 dark:text-gray-400">
-          Already have an account?
-          <button onclick="toggleAuthForm()" class="text-[#F9B44C] hover:underline font-medium">Sign in</button>
-        </p>
+        <h1 class="text-2xl font-bold mb-2">Join SwapMates</h1>
+        <p class="text-gray-600">Create your account to start collaborating</p>
       </div>
 
+      <form id="signupForm" class="space-y-4">
+        <div>
+          <label for="signup-name" class="block text-sm font-medium mb-2">Display Name</label>
+          <input type="text" id="signup-name" class="input" placeholder="Your full name" required>
+        </div>
+
+        <div>
+          <label for="signup-username" class="block text-sm font-medium mb-2">Username</label>
+          <input type="text" id="signup-username" class="input" placeholder="Choose a username" required>
+        </div>
+
+        <div>
+          <label for="signup-email" class="block text-sm font-medium mb-2">Email</label>
+          <input type="email" id="signup-email" class="input" placeholder="Enter your email" required>
+        </div>
+
+        <div>
+          <label for="signup-password" class="block text-sm font-medium mb-2">Password</label>
+          <input type="password" id="signup-password" class="input" placeholder="Create a password" required>
+        </div>
+
+        <button type="submit" class="btn-primary w-full">Create Account</button>
+      </form>
+
+      <p class="text-sm text-center mt-4">
+        Already have an account?
+        <button onclick="toggleAuthForm()" class="text-blue-600 hover:underline">Sign in</button>
+      </p>
     </div>
+
   </div>
 </div>
 
