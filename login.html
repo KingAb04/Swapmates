@@ -119,149 +119,154 @@
     </div>
 
     <!-- Dashboard -->
-    <div id="dashboard" class="hidden min-h-screen flex bg-white relative">
-        <!-- Dark mode toggle -->
-        <button id="dark-toggle" class="absolute top-2 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="Toggle dark mode" onclick="toggleDarkMode()">
-            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
-            <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
-        </button>
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Logo -->
-            <div class="p-4 border-b border-gray-200">
-                <div class="flex items-center justify-center space-x-2 mb-4">
-                    <img src="logo.png" alt="SwapMates Logo" class="logo">
-                </div>
-            </div>
-            <!-- Navigation -->
-            <nav class="flex-1 p-4">
-                <div class="space-y-2">
-                    <button onclick="showPage('home')" class="nav-btn active-nav btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="home" class="w-5 h-5"></i>
-                        <span>Home</span>
-                    </button>
-                    <button onclick="showPage('categories')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="grid-3x3" class="w-5 h-5"></i>
-                        <span>Categories</span>
-                    </button>
-                    <button onclick="showPage('commission')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="dollar-sign" class="w-5 h-5"></i>
-                        <span>Commission</span>
-                    </button>
-                    <!-- Removed Search from navigation -->
-                    <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="bell" class="w-5 h-5"></i>
-                        <span>Notifications</span>
-                    </button>
-                    <button onclick="showPage('messages')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                        <span>Messages</span>
-                    </button>
-                    <button onclick="showPage('profile')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="user" class="w-5 h-5"></i>
-                        <span>Profile</span>
-                    </button>
-                    <button onclick="showPage('footer')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
-                        <i data-lucide="info" class="w-5 h-5"></i>
-                        <span>About / Footer</span>
-                    </button>
-                </div>
-            </nav>
-            <!-- User Profile -->
-            <div class="p-4 border-t border-gray-200">
-                <div class="flex items-center space-x-3 mb-3">
-                    <div class="avatar">
-                        <span id="user-avatar">SU</span>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <p class="text-sm font-medium truncate" id="user-name">SAMPLE USER</p>
-                        <p class="text-xs text-gray-500 truncate" id="user-username">@SAMPLE</p>
-                    </div>
-                </div>
-                <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2">
-                    <i data-lucide="log-out" class="w-4 h-4"></i>
-                    <span>Sign Out</span>
-                </button>
+  <div id="dashboard" class="hidden min-h-screen flex bg-gradient-to-br from-[#d8e9ff] to-[#f5f9ff] relative">
+    <!-- Dark mode toggle -->
+    <button id="dark-toggle" class="absolute top-2 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="Toggle dark mode" onclick="toggleDarkMode()">
+        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+        <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
+    </button>
+
+    <!-- Sidebar -->
+    <div class="sidebar bg-gradient-to-b from-[#3b82f6] to-[#60a5fa] text-white">
+        <!-- Logo -->
+        <div class="p-4 border-b border-blue-300/50">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <img src="logo.png" alt="SwapMates Logo" class="logo">
             </div>
         </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 p-4">
+            <div class="space-y-2">
+                <button onclick="showPage('home')" class="nav-btn active-nav btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="home" class="w-5 h-5"></i>
+                    <span>Home</span>
+                </button>
+                <button onclick="showPage('categories')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="grid-3x3" class="w-5 h-5"></i>
+                    <span>Categories</span>
+                </button>
+                <button onclick="showPage('commission')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="dollar-sign" class="w-5 h-5"></i>
+                    <span>Commission</span>
+                </button>
+                <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="bell" class="w-5 h-5"></i>
+                    <span>Notifications</span>
+                </button>
+                <button onclick="showPage('messages')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span>Messages</span>
+                </button>
+                <button onclick="showPage('profile')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="user" class="w-5 h-5"></i>
+                    <span>Profile</span>
+                </button>
+                <button onclick="showPage('footer')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3 hover:bg-blue-400/30 rounded-lg transition">
+                    <i data-lucide="info" class="w-5 h-5"></i>
+                    <span>About / Footer</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- User Profile -->
+        <div class="p-4 border-t border-blue-300/50">
+            <div class="flex items-center space-x-3 mb-3">
+                <div class="avatar bg-white/20 text-white">
+                    <span id="user-avatar">SU</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-medium truncate" id="user-name">SAMPLE USER</p>
+                    <p class="text-xs text-blue-100 truncate" id="user-username">@SAMPLE</p>
+                </div>
+            </div>
+            <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2 bg-white/20 hover:bg-white/30 rounded-lg text-white">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+                <span>Sign Out</span>
+            </button>
+        </div>
+    </div>
+
         <!-- Main Content -->
         <div class="main-content">
 <!-- Home Page -->
 <div id="home-page" class="page">
-    <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex items-center justify-between">
-        <h1 class="text-xl font-bold">Home</h1>
-        <button onclick="showPage('search')" class="ml-2 p-2 rounded-full hover:bg-gray-100 focus:outline-none" title="Search">
-            <i data-lucide="search" class="w-6 h-6"></i>
-        </button>
-    </div>
-    <div class="p-4">
-        <!-- Create Post and Feed in the same container -->
-        <div id="post-container">
-            <!-- Create Post -->
-            <div class="flex space-x-3 mb-6">
-                <div class="avatar">
-                    <span id="create-post-avatar">SU</span>
-                </div>
-                <div class="flex-1 space-y-3">
-                    <textarea id="post-content" class="textarea" placeholder="What academic task would you like to share or find help with?"></textarea>
-                    <div class="flex items-center gap-3 mt-2">
-                        <label class="flex items-center gap-2 cursor-pointer">
-                            <i data-lucide="image" class="w-5 h-5 text-gray-500"></i>
-                            <input type="file" id="post-attachment" class="hidden" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" onchange="previewAttachment(event)">
-                            <span class="text-sm text-gray-600">Attach file</span>
-                        </label>
-                        <div id="attachment-preview" class="flex items-center gap-2"></div>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3 mt-2">
-                        <select id="post-type" class="select">
-                            <option value="">Select post type</option>
-                            <option value="exchange">📄 Exchange</option>
-                            <option value="commission">💰 Commission</option>
-                            <option value="help">⏰ Need Help</option>
-                        </select>
-                        <select id="post-category" class="select">
-                            <option value="">Select category</option>
-                            <option value="mathematics">Mathematics</option>
-                            <option value="science">Science</option>
-                            <option value="english">English</option>
-                            <option value="history">History</option>
-                            <option value="computer-science">Computer Science</option>
-                            <option value="art">Art & Design</option>
-                            <option value="business">Business</option>
-                            <option value="psychology">Psychology</option>
-                        </select>
-                    </div>
-                    <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
-                        <input type="text" id="post-budget" class="input" placeholder="Token (e.g., 10)">
-                        <input type="date" id="post-deadline" class="input">
-                    </div>
-                    <div class="flex items-center justify-between pt-3 border-t border-gray-200">
-                        <span class="text-sm text-gray-500">
-                            <span id="char-count">0</span>/280
-                        </span>
-                        <button onclick="createPost()" class="btn-primary">Post</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Posts Feed -->
-            <div id="feed" class="overflow-y-auto">
-                <!-- Posts will be dynamically added here -->
-            </div>
+  <div class="sticky top-0 bg-[#fffaf6] border-b border-[#F4733B] p-4 flex items-center justify-between">
+    <h1 class="text-xl font-bold text-[#F4733B]">Home</h1>
+    <button onclick="showPage('search')" class="ml-2 p-2 rounded-full hover:bg-[#fde7df] focus:outline-none" title="Search">
+      <i data-lucide="search" class="w-6 h-6 text-[#F4733B]"></i>
+    </button>
+  </div>
+  <div class="p-4 bg-[#fffaf6]">
+    <!-- Create Post and Feed in the same container -->
+    <div id="post-container">
+      <!-- Create Post -->
+      <div class="flex space-x-3 mb-6">
+        <div class="avatar">
+          <span id="create-post-avatar" class="bg-[#F4733B] text-white">SU</span>
         </div>
+        <div class="flex-1 space-y-3">
+          <textarea id="post-content" class="textarea border-[#F4733B] focus:ring-[#F4733B]" placeholder="What academic task would you like to share or find help with?"></textarea>
+          <div class="flex items-center gap-3 mt-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <i data-lucide="image" class="w-5 h-5 text-[#F4733B]"></i>
+              <input type="file" id="post-attachment" class="hidden" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" onchange="previewAttachment(event)">
+              <span class="text-sm text-[#F4733B]">Attach file</span>
+            </label>
+            <div id="attachment-preview" class="flex items-center gap-2"></div>
+          </div>
+          <div class="grid grid-cols-2 gap-3 mt-2">
+            <select id="post-type" class="select border-[#F4733B] focus:ring-[#F4733B]">
+              <option value="">Select post type</option>
+              <option value="exchange">📄 Exchange</option>
+              <option value="commission">💰 Commission</option>
+              <option value="help">⏰ Need Help</option>
+            </select>
+            <select id="post-category" class="select border-[#F4733B] focus:ring-[#F4733B]">
+              <option value="">Select category</option>
+              <option value="mathematics">Mathematics</option>
+              <option value="science">Science</option>
+              <option value="english">English</option>
+              <option value="history">History</option>
+              <option value="computer-science">Computer Science</option>
+              <option value="art">Art & Design</option>
+              <option value="business">Business</option>
+              <option value="psychology">Psychology</option>
+            </select>
+          </div>
+          <div id="commission-fields" class="hidden grid grid-cols-2 gap-3">
+            <input type="text" id="post-budget" class="input border-[#F4733B]" placeholder="Token (e.g., 10)">
+            <input type="date" id="post-deadline" class="input border-[#F4733B]">
+          </div>
+          <div class="flex items-center justify-between pt-3 border-t border-[#F4733B]">
+            <span class="text-sm text-gray-500">
+              <span id="char-count">0</span>/280
+            </span>
+            <button onclick="createPost()" class="px-4 py-2 bg-[#F4733B] text-white rounded hover:bg-[#e06531] transition">Post</button>
+          </div>
+        </div>
+      </div>
+      <!-- Posts Feed -->
+      <div id="feed" class="overflow-y-auto">
+        <!-- Posts will be dynamically added here -->
+      </div>
     </div>
+  </div>
 </div>
+
             <!-- Categories Page -->
             <div id="categories-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Categories</h1>
-                    <p class="text-gray-600">Browse academic tasks by subject</p>
-                </div>
-                <div class="p-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="categories-grid">
-                        <!-- Categories will be populated here -->
-                    </div>
-                </div>
-            </div>
+  <div class="sticky top-0 bg-[#fffaf6] border-b border-[#F4733B] p-4">
+    <h1 class="text-xl font-bold text-[#F4733B]">Categories</h1>
+    <p class="text-gray-600">Browse academic tasks by subject</p>
+  </div>
+  <div class="p-4 bg-[#fffaf6]">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="categories-grid">
+      <!-- Categories will be populated here -->
+    </div>
+  </div>
+</div>
+
             <!-- Commission Page -->
             <div id="commission-page" class="page hidden">
                 <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
@@ -289,58 +294,82 @@
                     </div>
                 </div>
             </div>
+
+        
             <!-- Other Pages (Placeholder) -->
-            <div id="search-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Search</h1>
-                </div>
-                <div class="p-8">
-                    <div class="flex justify-center mb-4">
-                        <input 
-                            type="text" 
-                            id="search-input" 
-                            placeholder="Search for posts or users..." 
-                            class="border rounded p-2 w-1/2"
-                        />
-                        <button 
-                            id="search-button" 
-                            class="ml-2 bg-blue-500 text-white rounded px-4 py-2"
-                        >
-                            Search
-                        </button>
-                    </div>
-                    <div id="search-results" class="text-center text-gray-500">
-                        <p>No results found.</p>
-                    </div>
-                </div>
-            </div>
+           <div id="search-page" class="page hidden">
+  <!-- Header -->
+  <div class="sticky top-0 bg-[#fffaf6] border-b border-gray-200 p-4 shadow-sm flex items-center justify-between">
+    <h1 class="text-xl font-bold text-[#F4733B]">Search</h1>
+  </div>
+
+  <!-- Content -->
+  <div class="p-8 bg-[#fffaf6] min-h-screen">
+    <div class="flex justify-center mb-6">
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search for posts or users..." 
+        class="border border-[#fde4d6] rounded-lg p-3 w-1/2 focus:ring-2 focus:ring-[#F4733B] outline-none text-sm"
+      />
+      <button 
+        id="search-button" 
+        class="ml-2 bg-[#F4733B] hover:bg-[#e75b1f] text-white rounded-lg px-4 py-2 text-sm font-medium transition"
+      >
+        Search
+      </button>
+    </div>
+
+    <!-- Search Results -->
+    <div id="search-results" class="text-center text-gray-500 bg-white border border-[#fde4d6] rounded-xl p-8 shadow-sm">
+      <p class="text-sm">No results found.</p>
+    </div>
+  </div>
+</div>
+
+
+            
             <div id="notifications-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Notifications</h1>
-                </div>
-                <div class="p-8">
-                    <div class="notification-item border-b border-gray-200 py-4">
-                        <p class="font-medium">John Doe commented on your post.</p>
-                        <span class="text-sm text-gray-500">2 hours ago</span>
-                    </div>
-                    <div class="notification-item border-b border-gray-200 py-4">
-                        <p class="font-medium">You have a new follower: Jane Smith.</p>
-                        <span class="text-sm text-gray-500">5 hours ago</span>
-                    </div>
-                    <div class="notification-item border-b border-gray-200 py-4">
-                        <p class="font-medium">Your post was liked by Mike Chen.</p>
-                        <span class="text-sm text-gray-500">1 day ago</span>
-                    </div>
-                    <div class="notification-item border-b border-gray-200 py-4">
-                        <p class="font-medium">New message from Sarah Johnson.</p>
-                        <span class="text-sm text-gray-500">1 day ago</span>
-                    </div>
-                    <div class="notification-item border-b border-gray-200 py-4">
-                        <p class="font-medium">Your commission request has been approved!</p>
-                        <span class="text-sm text-gray-500">2 days ago</span>
-                    </div>
-                </div>
-            </div>
+  <!-- Header -->
+  <div class="sticky top-0 bg-[#F9B44C] text-white border-b border-gray-200 p-4 flex justify-between items-center shadow">
+    <h1 class="text-xl font-bold">Notifications</h1>
+    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition">Mark all as read</button>
+  </div>
+
+  <!-- Notifications List -->
+  <div class="p-8 bg-[#FFF6EE] min-h-screen">
+    <div class="space-y-4 max-w-3xl mx-auto">
+
+      <!-- Notification Item -->
+      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+        <p class="font-medium text-gray-800">💬 John Doe commented on your post.</p>
+        <span class="text-sm text-gray-500">2 hours ago</span>
+      </div>
+
+      <div class="notification-item bg-white border-l-4 border-[#F9B44C] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+        <p class="font-medium text-gray-800">👤 You have a new follower: Jane Smith.</p>
+        <span class="text-sm text-gray-500">5 hours ago</span>
+      </div>
+
+      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+        <p class="font-medium text-gray-800">❤️ Your post was liked by Mike Chen.</p>
+        <span class="text-sm text-gray-500">1 day ago</span>
+      </div>
+
+      <div class="notification-item bg-white border-l-4 border-[#F9B44C] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+        <p class="font-medium text-gray-800">✉️ New message from Sarah Johnson.</p>
+        <span class="text-sm text-gray-500">1 day ago</span>
+      </div>
+
+      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+        <p class="font-medium text-gray-800">✅ Your commission request has been approved!</p>
+        <span class="text-sm text-gray-500">2 days ago</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 
             
             <div id="messages-page" class="page hidden h-full">
