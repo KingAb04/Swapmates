@@ -414,7 +414,7 @@
             </div>
             <div id="profile-page" class="page hidden">
   <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Profile Settings</h1>
+    <h1 class="text-xl font-bold">Profile</h1>
     <button class="btn-secondary text-sm" onclick="toggleEditProfile()">Edit Profile</button>
   </div>
 
@@ -429,14 +429,21 @@
       </div>
     </div>
 
-    <!-- ABOUT SECTION -->
-    <section>
-      <h3 class="text-lg font-bold mb-2">About</h3>
+    <!-- TAB BUTTONS -->
+    <div class="border-b border-gray-200 flex space-x-6 mt-6">
+      <button class="tab-btn active border-b-2 border-indigo-600 pb-2 text-indigo-600 font-semibold" onclick="showTab('about-tab', this)">About</button>
+      <button class="tab-btn pb-2 text-gray-600 hover:text-indigo-600" onclick="showTab('commissions-tab', this)">Commissions</button>
+      <button class="tab-btn pb-2 text-gray-600 hover:text-indigo-600" onclick="showTab('activity-tab', this)">Activity</button>
+    </div>
+
+    <!-- ABOUT TAB -->
+    <div id="about-tab" class="tab-content mt-6">
       <p class="text-gray-700">
         Hi! I’m Alex, a freelance illustrator specializing in stylized portraits and fantasy art.
-        I’ve been working with clients for over 3 years, creating digital commissions and character
-        concepts for games and stories. I use Procreate and Photoshop to bring creative ideas to life.
+        I’ve worked with clients around the world creating digital commissions, book covers, and
+        game character concepts. I use Procreate and Photoshop to bring ideas to life.
       </p>
+
       <div class="grid grid-cols-2 gap-4 mt-4">
         <div>
           <h4 class="font-semibold">Location</h4>
@@ -455,27 +462,29 @@
           <p class="text-yellow-500">★★★★★ (4.9/5)</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- COMMISSIONS SECTION -->
-    <section>
-      <h3 class="text-lg font-bold mb-2">Commissions</h3>
+    <!-- COMMISSIONS TAB -->
+    <div id="commissions-tab" class="tab-content hidden mt-6">
+      <h3 class="text-lg font-bold mb-4">Your Commission History</h3>
       <div class="space-y-4">
-        <div class="border p-4 rounded-lg hover:shadow">
+        <div class="border p-4 rounded-lg hover:shadow transition">
           <h4 class="font-semibold">✨ Character Portrait</h4>
           <p class="text-gray-600 text-sm">Commissioned by <strong>@sketchqueen</strong> • Delivered Oct 25, 2025</p>
           <p class="mt-1 text-gray-700">
             A detailed fantasy portrait in semi-realistic style. Delivered with PSD and PNG formats.
           </p>
         </div>
-        <div class="border p-4 rounded-lg hover:shadow">
+
+        <div class="border p-4 rounded-lg hover:shadow transition">
           <h4 class="font-semibold">🌙 Twitch Banner Design</h4>
           <p class="text-gray-600 text-sm">Commissioned by <strong>@zenstream</strong> • Delivered Sep 10, 2025</p>
           <p class="mt-1 text-gray-700">
             A custom Twitch banner featuring galaxy elements and mascot illustration.
           </p>
         </div>
-        <div class="border p-4 rounded-lg hover:shadow">
+
+        <div class="border p-4 rounded-lg hover:shadow transition">
           <h4 class="font-semibold">🔥 Chibi Character Set</h4>
           <p class="text-gray-600 text-sm">Commissioned by <strong>@artlover22</strong> • Delivered Aug 5, 2025</p>
           <p class="mt-1 text-gray-700">
@@ -483,11 +492,11 @@
           </p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ACTIVITY SECTION -->
-    <section>
-      <h3 class="text-lg font-bold mb-2">Recent Activity</h3>
+    <!-- ACTIVITY TAB -->
+    <div id="activity-tab" class="tab-content hidden mt-6">
+      <h3 class="text-lg font-bold mb-4">Recent Activity</h3>
       <ul class="divide-y">
         <li class="py-2 text-gray-700">
           🖌️ Posted a new artwork <strong>“Winds of Eternity”</strong> — 2 days ago
@@ -502,9 +511,24 @@
           🛒 Accepted a new commission request from <strong>@pixelwolf</strong> — 2 weeks ago
         </li>
       </ul>
-    </section>
+    </div>
   </div>
 </div>
+
+<script>
+function showTab(tabId, button) {
+  document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+  document.getElementById(tabId).classList.remove('hidden');
+  
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active', 'border-b-2', 'border-indigo-600', 'text-indigo-600', 'font-semibold');
+    btn.classList.add('text-gray-600');
+  });
+  
+  button.classList.add('active', 'border-b-2', 'border-indigo-600', 'text-indigo-600', 'font-semibold');
+}
+</script>
+
 
 
 <script>
