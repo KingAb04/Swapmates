@@ -146,51 +146,50 @@
 
 
     <!-- Dashboard -->
-  <div id="dashboard" class="hidden min-h-screen flex bg-white relative">
+  <div id="dashboard" class="hidden min-h-screen flex bg-gradient-to-b from-[#FFF7F0] to-white relative">
   <!-- Dark mode toggle -->
-  <button id="dark-toggle" class="absolute top-2 right-4 z-50 p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition" title="Toggle dark mode" onclick="toggleDarkMode()">
+  <button id="dark-toggle" class="absolute top-2 right-4 z-50 p-2 rounded-full bg-[#F9B44C]/20 hover:bg-[#F9B44C]/40 text-[#F4733B] transition" title="Toggle dark mode" onclick="toggleDarkMode()">
     <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
     <i data-lucide="sun" class="w-5 h-5 hidden dark:inline"></i>
   </button>
 
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar bg-white/90 backdrop-blur-sm shadow-md border-r border-[#F9B44C]/30">
     <!-- Logo -->
-    <div class="p-4 border-b border-gray-200">
+    <div class="p-4 border-b border-[#F9B44C]/30">
       <div class="flex items-center justify-center space-x-2 mb-4">
-        <img src="logo.png" alt="SwapMates Logo" class="logo">
+        <img src="logo.png" alt="SwapMates Logo" class="logo w-20">
       </div>
     </div>
 
     <!-- Navigation -->
     <nav class="flex-1 p-4">
       <div class="space-y-2">
-        <button onclick="showPage('home')" class="nav-btn active-nav btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('home')" class="nav-btn active-nav w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg bg-[#F4733B]/10 text-[#F4733B] hover:bg-[#F4733B]/20 font-medium transition">
           <i data-lucide="home" class="w-5 h-5"></i>
           <span>Home</span>
         </button>
-        <button onclick="showPage('categories')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('categories')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="grid-3x3" class="w-5 h-5"></i>
           <span>Categories</span>
         </button>
-        <button onclick="showPage('commission')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('commission')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="dollar-sign" class="w-5 h-5"></i>
           <span>Commission</span>
         </button>
-        <!-- Removed Search from navigation -->
-        <button onclick="showPage('notifications')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('notifications')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="bell" class="w-5 h-5"></i>
           <span>Notifications</span>
         </button>
-        <button onclick="showPage('messages')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('messages')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="mail" class="w-5 h-5"></i>
           <span>Messages</span>
         </button>
-        <button onclick="showPage('profile')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('profile')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="user" class="w-5 h-5"></i>
           <span>Profile</span>
         </button>
-        <button onclick="showPage('footer')" class="nav-btn btn-ghost w-full text-left flex items-center space-x-3">
+        <button onclick="showPage('footer')" class="nav-btn w-full text-left flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-[#F4733B]/10 text-gray-700 hover:text-[#F4733B] font-medium transition">
           <i data-lucide="info" class="w-5 h-5"></i>
           <span>About / Footer</span>
         </button>
@@ -198,22 +197,23 @@
     </nav>
 
     <!-- User Profile -->
-    <div class="p-4 border-t border-gray-200">
+    <div class="p-4 border-t border-[#F9B44C]/30 bg-white/80">
       <div class="flex items-center space-x-3 mb-3">
-        <div class="avatar">
+        <div class="avatar w-10 h-10 rounded-full flex items-center justify-center bg-[#F4733B]/20 text-[#F4733B] font-semibold">
           <span id="user-avatar">SU</span>
         </div>
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-medium truncate" id="user-name">SAMPLE USER</p>
+          <p class="text-sm font-medium truncate text-gray-800" id="user-name">SAMPLE USER</p>
           <p class="text-xs text-gray-500 truncate" id="user-username">@SAMPLE</p>
         </div>
       </div>
-      <button onclick="logout()" class="btn-secondary w-full flex items-center justify-center space-x-2">
+      <button onclick="logout()" class="w-full flex items-center justify-center space-x-2 py-2 rounded-lg bg-[#F4733B] text-white hover:bg-[#F9B44C] transition font-semibold">
         <i data-lucide="log-out" class="w-4 h-4"></i>
         <span>Sign Out</span>
       </button>
     </div>
   </div>
+
 
 
 
@@ -359,39 +359,41 @@
 
 
             
-            <div id="notifications-page" class="page hidden">
+           <div id="notifications-page" class="page hidden bg-gradient-to-b from-[#FFF7F0] to-white min-h-screen">
   <!-- Header -->
-  <div class="sticky top-0 bg-[#F9B44C] text-white border-b border-gray-200 p-4 flex justify-between items-center shadow">
-    <h1 class="text-xl font-bold">Notifications</h1>
-    <button class="text-sm bg-white/20 hover:bg-white/30 px-3 py-1 rounded transition">Mark all as read</button>
+  <div class="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-[#F9B44C]/40 p-5 flex justify-between items-center shadow-sm">
+    <h1 class="text-2xl font-extrabold text-[#F4733B]">Notifications</h1>
+    <button class="text-sm font-semibold text-white bg-[#F9B44C] hover:bg-[#F4733B] px-4 py-1.5 rounded-lg shadow transition">
+      Mark all as read
+    </button>
   </div>
 
   <!-- Notifications List -->
-  <div class="p-8 bg-[#FFF6EE] min-h-screen">
+  <div class="p-10">
     <div class="space-y-4 max-w-3xl mx-auto">
 
       <!-- Notification Item -->
-      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+      <div class="notification-item bg-white/80 border-l-4 border-[#F4733B] rounded-xl p-4 shadow-sm hover:shadow-md transition">
         <p class="font-medium text-gray-800">💬 John Doe commented on your post.</p>
         <span class="text-sm text-gray-500">2 hours ago</span>
       </div>
 
-      <div class="notification-item bg-white border-l-4 border-[#F9B44C] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+      <div class="notification-item bg-white/80 border-l-4 border-[#F9B44C] rounded-xl p-4 shadow-sm hover:shadow-md transition">
         <p class="font-medium text-gray-800">👤 You have a new follower: Jane Smith.</p>
         <span class="text-sm text-gray-500">5 hours ago</span>
       </div>
 
-      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+      <div class="notification-item bg-white/80 border-l-4 border-[#F4733B] rounded-xl p-4 shadow-sm hover:shadow-md transition">
         <p class="font-medium text-gray-800">❤️ Your post was liked by Mike Chen.</p>
         <span class="text-sm text-gray-500">1 day ago</span>
       </div>
 
-      <div class="notification-item bg-white border-l-4 border-[#F9B44C] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+      <div class="notification-item bg-white/80 border-l-4 border-[#F9B44C] rounded-xl p-4 shadow-sm hover:shadow-md transition">
         <p class="font-medium text-gray-800">✉️ New message from Sarah Johnson.</p>
         <span class="text-sm text-gray-500">1 day ago</span>
       </div>
 
-      <div class="notification-item bg-white border-l-4 border-[#F4733B] rounded-lg p-4 shadow-sm hover:shadow-md transition">
+      <div class="notification-item bg-white/80 border-l-4 border-[#F4733B] rounded-xl p-4 shadow-sm hover:shadow-md transition">
         <p class="font-medium text-gray-800">✅ Your commission request has been approved!</p>
         <span class="text-sm text-gray-500">2 days ago</span>
       </div>
@@ -399,6 +401,7 @@
     </div>
   </div>
 </div>
+
 
 
             
