@@ -413,38 +413,158 @@
                 </div>
             </div>
             <div id="profile-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Profile Settings</h1>
-                </div>
-                <div class="p-8">
-                    <form id="profile-settings-form" class="space-y-6">
-                        <div>
-                            <label for="profile-name" class="block text-sm font-medium">Display Name</label>
-                            <input type="text" id="profile-name" class="input" placeholder="Your full name" required>
-                        </div>
-                        <div>
-                            <label for="profile-username" class="block text-sm font-medium">Username</label>
-                            <input type="text" id="profile-username" class="input" placeholder="Choose a username" required>
-                        </div>
-                        <div>
-                            <label for="profile-email" class="block text-sm font-medium">Email</label>
-                            <input type="email" id="profile-email" class="input" placeholder="Enter your email" required>
-                        </div>
-                        <div>
-                            <label for="profile-password" class="block text-sm font-medium">New Password</label>
-                            <input type="password" id="profile-password" class="input" placeholder="Create a new password">
-                        </div>
-                        <div>
-                            <label for="profile-confirm-password" class="block text-sm font-medium">Confirm Password</label>
-                            <input type="password" id="profile-confirm-password" class="input" placeholder="Confirm your new password">
-                        </div>
-                        <div class="flex justify-between">
-                            <button type="button" onclick="saveProfileSettings()" class="btn-primary">Save Changes</button>
-                            <button type="button" onclick="cancelProfileSettings()" class="btn-secondary">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+  <div class="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">My Profile</h1>
+    <button onclick="toggleEditProfile(true)" class="btn-primary px-4 py-2 bg-blue-600 text-white rounded">
+      Edit
+    </button>
+  </div>
+
+  <div class="p-8 max-w-4xl mx-auto space-y-8">
+    <!-- Profile Info -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+        <!-- Avatar -->
+        <div id="avatar-container">
+          <div id="profile-avatar" class="w-24 h-24 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-2xl font-bold">
+            SU
+          </div>
+        </div>
+        <!-- User Info -->
+        <div class="flex-1">
+          <h2 id="profile-display-name" class="text-2xl font-semibold">Sample User</h2>
+          <p id="profile-username" class="text-gray-500">@sampleuser</p>
+          <span id="profile-role" class="inline-block mt-1 bg-blue-50 text-blue-700 text-xs font-medium px-2 py-1 rounded-full">
+            Student
+          </span>
+          <p id="profile-bio" class="mt-3 text-gray-700">
+            Passionate learner who loves sharing notes and helping others with their studies.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="grid grid-cols-3 text-center">
+        <div>
+          <div id="profile-posts" class="text-xl font-bold">124</div>
+          <div class="text-sm text-gray-500">Posts</div>
+        </div>
+        <div>
+          <div id="profile-commissions" class="text-xl font-bold">27</div>
+          <div class="text-sm text-gray-500">Commissions</div>
+        </div>
+        <div>
+          <div id="profile-rating" class="text-xl font-bold">4.9</div>
+          <div class="text-sm text-gray-500">Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="bg-white rounded-lg shadow p-6">
+      <div class="flex space-x-3 mb-4">
+        <button class="tab-btn bg-blue-50 text-blue-700 font-medium px-3 py-1 rounded" data-tab="about" onclick="switchProfileTab(event)">About</button>
+        <button class="tab-btn text-gray-700 font-medium px-3 py-1 rounded" data-tab="commissions" onclick="switchProfileTab(event)">Commissions</button>
+        <button class="tab-btn text-gray-700 font-medium px-3 py-1 rounded" data-tab="activity" onclick="switchProfileTab(event)">Activity</button>
+      </div>
+
+      <!-- About -->
+      <div id="profile-tab-about" class="tab-panel">
+        <h3 class="font-semibold mb-2">About</h3>
+        <p class="text-sm text-gray-700" id="about-text">Lives in Manila, enjoys tutoring and collaborating with other learners.</p>
+      </div>
+
+      <!-- Commissions -->
+      <div id="profile-tab-commissions" class="tab-panel hidden">
+        <h3 class="font-semibold mb-3">Commission History</h3>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
+            <h4 class="font-medium mb-2">Created</h4>
+            <div id="created-list" class="space-y-2"></div>
+          </div>
+          <div>
+            <h4 class="font-medium mb-2">Requested / Hired</h4>
+            <div id="requested-list" class="space-y-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity -->
+      <div id="profile-tab-activity" class="tab-panel hidden">
+        <h3 class="font-semibold mb-3">Recent Activity</h3>
+        <ul id="activity-list" class="text-sm text-gray-600 space-y-1"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Profile Modal -->
+  <div id="edit-profile-modal" class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+    <div class="bg-white rounded-lg p-6 w-full max-w-lg">
+      <h2 class="text-lg font-bold mb-4">Edit Profile</h2>
+      <form id="edit-profile-form" onsubmit="saveProfileChanges(event)" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium">Display Name</label>
+          <input id="input-name" type="text" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Username</label>
+          <input id="input-username" type="text" class="w-full border rounded p-2" required>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Role</label>
+          <select id="input-role" class="w-full border rounded p-2">
+            <option>Student</option>
+            <option>Teacher / Tutor</option>
+            <option>Freelancer</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm font-medium">Bio</label>
+          <textarea id="input-bio" class="w-full border rounded p-2" rows="3"></textarea>
+        </div>
+        <div class="flex justify-end gap-3 mt-4">
+          <button type="button" onclick="toggleEditProfile(false)" class="btn-secondary border rounded px-3 py-2">Cancel</button>
+          <button type="submit" class="btn-primary bg-blue-600 text-white rounded px-3 py-2">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Toggle edit modal
+  function toggleEditProfile(show) {
+    document.getElementById("edit-profile-modal").classList.toggle("hidden", !show);
+    if (show) {
+      document.getElementById("input-name").value = document.getElementById("profile-display-name").innerText;
+      document.getElementById("input-username").value = document.getElementById("profile-username").innerText.replace('@', '');
+      document.getElementById("input-role").value = document.getElementById("profile-role").innerText;
+      document.getElementById("input-bio").value = document.getElementById("profile-bio").innerText;
+    }
+  }
+
+  function saveProfileChanges(e) {
+    e.preventDefault();
+    document.getElementById("profile-display-name").innerText = document.getElementById("input-name").value;
+    document.getElementById("profile-username").innerText = '@' + document.getElementById("input-username").value;
+    document.getElementById("profile-role").innerText = document.getElementById("input-role").value;
+    document.getElementById("profile-bio").innerText = document.getElementById("input-bio").value;
+    document.getElementById("about-text").innerText = document.getElementById("input-bio").value || 'No bio yet.';
+    toggleEditProfile(false);
+  }
+
+  // Tab switching
+  function switchProfileTab(e) {
+    const tab = e.currentTarget.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('bg-blue-50', 'text-blue-700'));
+    e.currentTarget.classList.add('bg-blue-50', 'text-blue-700');
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+    document.getElementById('profile-tab-' + tab).classList.remove('hidden');
+  }
+</script>
+
             <!-- Footer Page -->
             <div id="footer-page" class="page hidden">
                 <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
