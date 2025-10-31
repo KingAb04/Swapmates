@@ -298,32 +298,34 @@
 </div>
 
             <!-- Commission Page -->
-            <div id="commission-page" class="page hidden">
-                <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-                    <h1 class="text-xl font-bold">Commission Board</h1>
-                    <p class="text-gray-600">Find paid academic work opportunities</p>
-                </div>
-                <div class="p-4">
-                    <div class="grid grid-cols-3 gap-4">
-  <div class="card text-center bg-[#F4733B] text-white rounded-xl p-4 shadow-md">
-    <p class="text-2xl font-bold">127</p>
-    <p class="text-xs opacity-90">Active Commissions</p>
-  </div>
-  <div class="card text-center bg-[#F4733B] text-white rounded-xl p-4 shadow-md">
-    <p class="text-2xl font-bold">2.4h</p>
-    <p class="text-xs opacity-90">Avg. Response Time</p>
-  </div>
-  <div class="card text-center bg-[#F4733B] text-white rounded-xl p-4 shadow-md">
-    <p class="text-2xl font-bold">94%</p>
-    <p class="text-xs opacity-90">Success Rate</p>
-  </div>
+            <div id="commission-page" class="page hidden bg-gradient-to-b from-[#FFF7F0] to-white min-h-screen">
+    <div class="sticky top-0 bg-white border-b border-[#F9B44C]/40 p-4">
+        <h1 class="text-xl font-bold text-[#F4733B]">Commission Board</h1>
+        <p class="text-gray-600">Find paid academic work opportunities</p>
+    </div>
+
+    <div class="p-4">
+        <div class="grid grid-cols-3 gap-4">
+            <div class="card text-center bg-gradient-to-r from-[#F4733B] to-[#F9B44C] text-white rounded-xl p-4 shadow-md">
+                <p class="text-2xl font-bold">127</p>
+                <p class="text-xs opacity-90">Active Commissions</p>
+            </div>
+            <div class="card text-center bg-gradient-to-r from-[#F9B44C] to-[#F4733B] text-white rounded-xl p-4 shadow-md">
+                <p class="text-2xl font-bold">2.4h</p>
+                <p class="text-xs opacity-90">Avg. Response Time</p>
+            </div>
+            <div class="card text-center bg-gradient-to-r from-[#F4733B] to-[#F9B44C] text-white rounded-xl p-4 shadow-md">
+                <p class="text-2xl font-bold">94%</p>
+                <p class="text-xs opacity-90">Success Rate</p>
+            </div>
+        </div>
+
+        <div id="commission-feed" class="mt-6">
+            <!-- Commission posts will be populated here -->
+        </div>
+    </div>
 </div>
 
-                    <div id="commission-feed">
-                        <!-- Commission posts will be populated here -->
-                    </div>
-                </div>
-            </div>
 
         
             <!-- Other Pages (Placeholder) -->
@@ -728,53 +730,58 @@ function showTab(tabId, button) {
         </div>
         <!-- Right Sidebar -->
         <div class="right-sidebar hidden lg:block">
-            <div class="space-y-4">
-                <!-- E-Wallet Box -->
-                <div class="card">
-                    <div class="flex justify-between items-center">
-                        <span class="font-semibold">E-Wallet Balance</span>
-                        <span class="text-xl" id="wallet-balance">₱0.00</span>
-                    </div>
-                    <button onclick="openModal()" class="btn-primary mt-2 w-full">Add Funds</button>
-                </div>
-                <!-- Trending Categories -->
-                <div class="card">
-                    <h3 class="font-semibold mb-2">Trending Categories</h3>
-                    <div class="space-y-2">
-                        <div class="flex justify-between text-sm">
-                            <span>Computer Science</span>
-                            <span class="text-gray-500">189 posts</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span>Mathematics</span>
-                            <span class="text-gray-500">156 posts</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span>Science</span>
-                            <span class="text-gray-500">134 posts</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Quick Stats -->
-                <div class="card">
-                    <h3 class="font-semibold mb-2">Quick Stats</h3>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex justify-between">
-                            <span>Active Users</span>
-                            <span class="text-gray-500">2,847</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Today's Posts</span>
-                            <span class="text-gray-500">124</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Success Rate</span>
-                            <span class="text-gray-500">94%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  <div class="space-y-4">
+    <!-- E-Wallet Box -->
+    <div class="card bg-gradient-to-br from-[#FFF6EE] to-white border border-[#F9B44C]/40 shadow-sm rounded-xl p-4">
+      <div class="flex justify-between items-center">
+        <span class="font-semibold text-[#F4733B]">E-Wallet Balance</span>
+        <span class="text-xl font-bold text-[#F9B44C]" id="wallet-balance">₱0.00</span>
+      </div>
+      <button onclick="openModal()" class="mt-3 w-full bg-gradient-to-r from-[#F4733B] to-[#F9B44C] text-white font-medium py-2 rounded-lg shadow hover:opacity-90 transition">
+        Add Funds
+      </button>
+    </div>
+
+    <!-- Trending Categories -->
+    <div class="card bg-gradient-to-br from-[#FFF7EF] to-white border border-[#F9B44C]/30 shadow-sm rounded-xl p-4">
+      <h3 class="font-semibold text-[#F4733B] mb-2">Trending Categories</h3>
+      <div class="space-y-2">
+        <div class="flex justify-between text-sm">
+          <span>Computer Science</span>
+          <span class="text-[#F9B44C] font-medium">189 posts</span>
         </div>
+        <div class="flex justify-between text-sm">
+          <span>Mathematics</span>
+          <span class="text-[#F9B44C] font-medium">156 posts</span>
+        </div>
+        <div class="flex justify-between text-sm">
+          <span>Science</span>
+          <span class="text-[#F9B44C] font-medium">134 posts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="card bg-gradient-to-br from-[#FFF6EE] to-white border border-[#F4733B]/30 shadow-sm rounded-xl p-4">
+      <h3 class="font-semibold text-[#F4733B] mb-2">Quick Stats</h3>
+      <div class="space-y-2 text-sm">
+        <div class="flex justify-between">
+          <span>Active Users</span>
+          <span class="text-[#F9B44C] font-medium">2,847</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Today's Posts</span>
+          <span class="text-[#F9B44C] font-medium">124</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Success Rate</span>
+          <span class="text-[#F9B44C] font-medium">94%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
         <div id="buy-token-modal" class="modal hidden">
             <div class="modal-content max-w-md w-full">
                 <span class="close" onclick="closeModal()">&times;</span>
