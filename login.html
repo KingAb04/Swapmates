@@ -341,78 +341,87 @@
                     </div>
                 </div>
             </div>
+
+            
             <div id="messages-page" class="page hidden h-full">
-                <div class="flex h-[80vh] bg-white rounded-lg shadow overflow-hidden">
-                    <!-- Sidebar: Conversation List -->
-                    <div class="w-1/3 border-r border-gray-200 bg-gray-50 flex flex-col">
-                        <div class="p-4 border-b border-gray-200 flex items-center justify-between">
-                            <h2 class="text-lg font-bold">Chats</h2>
-                            <button class="p-2 rounded-full hover:bg-gray-200" title="New Message">
-                                <i data-lucide="edit-3" class="w-5 h-5"></i>
-                            </button>
-                        </div>
-                        <div id="conversation-list" class="flex-1 overflow-y-auto">
-                            <!-- Example conversations -->
-                            <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-200 transition" onclick="openConversation('1')">
-                                <div class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-medium truncate">John Doe</span>
-                                        <span class="text-xs text-gray-400 ml-2">2h</span>
-                                    </div>
-                                    <span class="text-sm text-gray-500 truncate">Hey, how's it going?</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-gray-200 transition" onclick="openConversation('2')">
-                                <div class="w-10 h-10 rounded-full bg-pink-200 flex items-center justify-center font-bold text-pink-700">JS</div>
-                                <div class="flex-1 min-w-0">
-                                    <div class="flex justify-between items-center">
-                                        <span class="font-medium truncate">Jane Smith</span>
-                                        <span class="text-xs text-gray-400 ml-2">5h</span>
-                                    </div>
-                                    <span class="text-sm text-gray-500 truncate">Are we still on for the meeting?</span>
-                                </div>
-                            </div>
-                            <!-- Add more conversations here -->
-                        </div>
-                        <div class="text-center text-gray-400 py-4 hidden" id="no-conversations">
-                            <p>No conversations yet</p>
-                        </div>
-                    </div>
-                    <!-- Main Chat Area -->
-                    <div class="flex-1 flex flex-col h-full">
-                        <!-- Chat Header -->
-                        <div class="p-4 border-b border-gray-200 flex items-center gap-3 bg-white">
-                            <div id="chat-avatar" class="w-10 h-10 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
-                            <div class="flex-1">
-                                <span id="chat-username" class="font-medium">John Doe</span>
-                                <span class="block text-xs text-gray-400" id="chat-status">Online</span>
-                            </div>
-                            <button class="p-2 rounded-full hover:bg-gray-100" title="More">
-                                <i data-lucide="more-vertical" class="w-5 h-5"></i>
-                            </button>
-                        </div>
-                        <!-- Chat Messages -->
-                        <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50">
-                            <!-- Example messages -->
-                            <div class="flex items-end gap-2">
-                                <div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center font-bold text-blue-700">JD</div>
-                                <div class="bg-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">Hey, how's it going?</div>
-                            </div>
-                            <div class="flex items-end gap-2 justify-end">
-                                <div class="bg-blue-500 text-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">I'm good! How about you?</div>
-                                <div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center font-bold text-gray-700">SU</div>
-                            </div>
-                            <!-- Add more messages here -->
-                        </div>
-                        <!-- Chat Input -->
-                        <form class="p-4 border-t border-gray-200 bg-white flex items-center gap-3" onsubmit="sendMessage(event)">
-                            <textarea id="chat-input" class="flex-1 textarea resize-none" rows="1" placeholder="Type a message..." required></textarea>
-                            <button type="submit" class="btn-primary px-4 py-2">Send</button>
-                        </form>
-                    </div>
-                </div>
+  <div class="flex h-[80vh] bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+
+    <!-- Sidebar: Conversation List -->
+    <div class="w-1/3 border-r border-gray-200 bg-[#FFF6EE] flex flex-col">
+      <div class="p-4 border-b border-gray-200 flex items-center justify-between bg-[#F9B44C] text-white rounded-tl-xl">
+        <h2 class="text-lg font-bold">Chats</h2>
+        <button class="p-2 rounded-full hover:bg-[#f8a13d]/80 transition" title="New Message">
+          <i data-lucide="edit-3" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="conversation-list" class="flex-1 overflow-y-auto">
+        <!-- Example conversations -->
+        <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[#F9B44C]/20 transition" onclick="openConversation('1')">
+          <div class="w-10 h-10 rounded-full bg-[#F4733B]/20 flex items-center justify-center font-bold text-[#F4733B]">JD</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between items-center">
+              <span class="font-medium truncate">John Doe</span>
+              <span class="text-xs text-gray-400 ml-2">2h</span>
             </div>
+            <span class="text-sm text-gray-500 truncate">Hey, how's it going?</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3 px-4 py-3 cursor-pointer hover:bg-[#F9B44C]/20 transition" onclick="openConversation('2')">
+          <div class="w-10 h-10 rounded-full bg-[#F4733B]/20 flex items-center justify-center font-bold text-[#F4733B]">JS</div>
+          <div class="flex-1 min-w-0">
+            <div class="flex justify-between items-center">
+              <span class="font-medium truncate">Jane Smith</span>
+              <span class="text-xs text-gray-400 ml-2">5h</span>
+            </div>
+            <span class="text-sm text-gray-500 truncate">Are we still on for the meeting?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-gray-400 py-4 hidden" id="no-conversations">
+        <p>No conversations yet</p>
+      </div>
+    </div>
+
+    <!-- Main Chat Area -->
+    <div class="flex-1 flex flex-col h-full">
+      <!-- Chat Header -->
+      <div class="p-4 border-b border-gray-200 flex items-center gap-3 bg-[#F9B44C] text-white">
+        <div id="chat-avatar" class="w-10 h-10 rounded-full bg-white/30 flex items-center justify-center font-bold">JD</div>
+        <div class="flex-1">
+          <span id="chat-username" class="font-semibold">John Doe</span>
+          <span class="block text-xs opacity-80" id="chat-status">Online</span>
+        </div>
+        <button class="p-2 rounded-full hover:bg-white/20 transition" title="More">
+          <i data-lucide="more-vertical" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Chat Messages -->
+      <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-4 bg-[#FFF6EE]">
+        <!-- Example messages -->
+        <div class="flex items-end gap-2">
+          <div class="w-8 h-8 rounded-full bg-[#F4733B]/30 flex items-center justify-center font-bold text-[#F4733B]">JD</div>
+          <div class="bg-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">Hey, how's it going?</div>
+        </div>
+        <div class="flex items-end gap-2 justify-end">
+          <div class="bg-[#F4733B] text-white rounded-lg px-4 py-2 shadow text-sm max-w-xs">I'm good! How about you?</div>
+          <div class="w-8 h-8 rounded-full bg-[#F9B44C]/60 flex items-center justify-center font-bold text-white">SU</div>
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <form class="p-4 border-t border-gray-200 bg-white flex items-center gap-3" onsubmit="sendMessage(event)">
+        <textarea id="chat-input" class="flex-1 resize-none border border-gray-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-[#F9B44C]" rows="1" placeholder="Type a message..." required></textarea>
+        <button type="submit" class="px-4 py-2 bg-[#F4733B] text-white rounded-lg hover:bg-[#e8682d] transition">Send</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+
 
             
            <div id="profile-page" class="page hidden bg-gradient-to-b from-[#FFF7F0] to-white min-h-screen">
