@@ -770,24 +770,8 @@ function showTab(tabId, button) {
 
    
 
-    grid.innerHTML = `
-        <button onclick="loadCategories()" class="mb-4 text-blue-500 hover:underline flex items-center">
-            ← Back to Categories
-        </button>
-        <h2 class="text-xl font-bold mb-2">${categoryName} Posts</h2>
-        <div class="space-y-3">
-            ${
-                filtered.length
-                ? filtered.map(p => `
-                    <div class="p-4 border rounded-lg bg-white shadow-sm">
-                        <span class="block text-sm text-gray-500">${p.type.toUpperCase()}</span>
-                        <p class="mt-1">${p.content}</p>
-                    </div>
-                `).join('')
-                : `<p class="text-gray-500">No posts found in this category.</p>`
-            }
-        </div>
-    `;
+ 
+        
 }
 
 
