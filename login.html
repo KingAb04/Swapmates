@@ -768,40 +768,7 @@ function showTab(tabId, button) {
         </div>
     </div>
 
-    const posts = [
-    { id: 1, category: 'mathematics', type: 'help', content: 'Need help solving calculus problems!' },
-    { id: 2, category: 'science', type: 'exchange', content: 'Sharing lab notes for Physics 101.' },
-    { id: 3, category: 'computer-science', type: 'commission', content: 'Looking for someone to debug my Python project.' },
-    { id: 4, category: 'english', type: 'help', content: 'Need essay proofreading assistance.' },
-    { id: 5, category: 'business', type: 'exchange', content: 'Sharing marketing case study templates.' },
-];
-
-const categories = [
-    { id: 'mathematics', name: 'Mathematics' },
-    { id: 'science', name: 'Science' },
-    { id: 'english', name: 'English' },
-    { id: 'history', name: 'History' },
-    { id: 'computer-science', name: 'Computer Science' },
-    { id: 'art', name: 'Art & Design' },
-    { id: 'business', name: 'Business' },
-    { id: 'psychology', name: 'Psychology' }
-];
-
-function loadCategories() {
-    const grid = document.getElementById('categories-grid');
-    grid.innerHTML = '';
-    categories.forEach(cat => {
-        const div = document.createElement('div');
-        div.className = 'p-4 border rounded-lg hover:bg-gray-50 cursor-pointer transition';
-        div.textContent = cat.name;
-        div.onclick = () => showCategoryPosts(cat.id, cat.name);
-        grid.appendChild(div);
-    });
-}
-
-function showCategoryPosts(categoryId, categoryName) {
-    const grid = document.getElementById('categories-grid');
-    const filtered = posts.filter(p => p.category === categoryId);
+   
 
     grid.innerHTML = `
         <button onclick="loadCategories()" class="mb-4 text-blue-500 hover:underline flex items-center">
@@ -823,12 +790,7 @@ function showCategoryPosts(categoryId, categoryName) {
     `;
 }
 
-loadCategories();
 
-function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-    document.getElementById(pageId + '-page').classList.remove('hidden');
-}
 </script>
     <!-- Removed the original footer from here -->
     <script>
