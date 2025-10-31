@@ -598,38 +598,40 @@ function showTab(tabId, button) {
 </script>
 
             <!-- Footer Page -->
-            <div id="footer-page" class="page hidden">
-  <div class="sticky top-0 bg-white border-b border-gray-200 p-4">
-    <h1 class="text-xl font-bold">About / Footer</h1>
+            <div id="footer-page" class="page hidden bg-gradient-to-b from-[#FFF7F0] to-white min-h-screen">
+  <!-- HEADER -->
+  <div class="sticky top-0 bg-white/90 backdrop-blur-sm border-b border-gray-200 p-5 shadow-sm">
+    <h1 class="text-2xl font-extrabold text-[#F4733B] tracking-tight">About Us</h1>
   </div>
 
-  <div class="p-8 space-y-10">
+  <div class="p-10 space-y-16">
     <!-- ABOUT COMPANY -->
-    <section class="max-w-5xl mx-auto text-gray-700">
-      <h2 class="text-2xl font-bold mb-3 text-orange-500">About SwapMates</h2>
-      <p class="leading-relaxed text-base">
+    <section class="max-w-5xl mx-auto text-center">
+      <img src="swapmates-logo.png" alt="SwapMates Logo" class="mx-auto w-40 mb-6">
+      <h2 class="text-3xl font-extrabold text-[#F4733B] mb-3">About <span class="text-[#F9B44C]">SwapMates</span></h2>
+      <p class="text-gray-700 leading-relaxed text-lg max-w-3xl mx-auto">
         <strong>SwapMates</strong> is a secure and collaborative academic platform designed for students to
         exchange skills, tutoring, and study help. We aim to build a safe student-to-student network that
         promotes learning, creativity, and productivity over shortcuts.
       </p>
-      <p class="leading-relaxed mt-4 text-base">
+      <p class="leading-relaxed mt-5 text-gray-700 text-lg max-w-3xl mx-auto">
         Our matchmaking system connects learners with complementary skills, allowing them to collaborate,
         commission academic or creative work, and grow together through peer learning.
       </p>
     </section>
 
     <!-- MISSION & VISION -->
-    <section class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 text-gray-700">
-      <div>
-        <h3 class="text-xl font-semibold mb-2 text-orange-500">Our Mission</h3>
-        <p class="text-base leading-relaxed">
+    <section class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+      <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold mb-3 text-[#F4733B]">Our Mission</h3>
+        <p class="text-gray-700 leading-relaxed">
           To empower students through collaboration by providing a safe and sustainable digital environment
           where they can exchange knowledge, skills, and services with fairness and trust.
         </p>
       </div>
-      <div>
-        <h3 class="text-xl font-semibold mb-2 text-orange-500">Our Vision</h3>
-        <p class="text-base leading-relaxed">
+      <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-lg transition">
+        <h3 class="text-2xl font-semibold mb-3 text-[#F9B44C]">Our Vision</h3>
+        <p class="text-gray-700 leading-relaxed">
           To become the leading student-centered learning community that transforms the way students learn,
           share, and support each other academically and creatively.
         </p>
@@ -637,9 +639,9 @@ function showTab(tabId, button) {
     </section>
 
     <!-- FEATURES / VALUES -->
-    <section class="max-w-5xl mx-auto">
-      <h3 class="text-xl font-semibold mb-4 text-orange-500">What Makes Us Different</h3>
-      <ul class="list-disc ml-6 space-y-2 text-base">
+    <section class="max-w-5xl mx-auto text-center">
+      <h3 class="text-2xl font-extrabold text-[#F4733B] mb-6">What Makes Us Different</h3>
+      <ul class="text-gray-700 text-base md:text-lg space-y-3 text-left max-w-3xl mx-auto list-disc list-inside">
         <li>Exclusive platform for students, not professionals.</li>
         <li>Fair and transparent commission system.</li>
         <li>Built-in chat, scheduling, and collaboration tools.</li>
@@ -648,7 +650,10 @@ function showTab(tabId, button) {
       </ul>
     </section>
   </div>
+
+  
 </div>
+
 
 
             
