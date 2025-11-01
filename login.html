@@ -787,96 +787,126 @@ function showTab(tabId, button) {
     </div>
   </div>
 </div>
+<!-- Buy Token / Add Funds Modal -->
+<div id="buy-token-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+  <div class="bg-white border-2 border-[#F4733B] rounded-2xl shadow-xl max-w-md w-full p-6 relative">
+    <button class="absolute top-3 right-4 text-gray-500 hover:text-[#F4733B] text-2xl" onclick="closeModal()">&times;</button>
+    <h2 class="text-2xl font-bold text-[#F4733B] mb-2 text-center">Add Funds to E-Wallet</h2>
+    <p class="text-gray-600 mb-4 text-center">Select a payment method and amount to top up your balance.</p>
 
-        <div id="buy-token-modal" class="modal hidden">
-            <div class="modal-content max-w-md w-full">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <h2 class="font-semibold mb-2">Add Funds to E-Wallet</h2>
-                <p class="mb-4">Select a payment method and amount to top up your balance.</p>
-                <form id="add-funds-form" onsubmit="event.preventDefault(); addFunds();">
-                    <div class="mb-4">
-                        <label class="block text-sm mb-1">Amount (PHP):</label>
-                        <div class="flex gap-2 flex-wrap">
-                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(100)">₱100</button>
-                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(200)">₱200</button>
-                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(500)">₱500</button>
-                            <button type="button" class="amount-btn btn-secondary" onclick="selectAmount(1000)">₱1,000</button>
-                            <input type="number" id="wallet-amount" class="input w-28" placeholder="Custom" min="1" style="margin-left:8px;">
-                        </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="block text-sm mb-1">Payment Method:</label>
-                        <div class="flex gap-3 flex-wrap">
-                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="gcash" onclick="selectPaymentMethod('gcash')">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/GCash_logo.svg" alt="GCash" class="h-6 w-6"> GCash
-                            </button>
-                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="paymaya" onclick="selectPaymentMethod('paymaya')">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/PayMaya_Logo_2020.png" alt="PayMaya" class="h-6 w-6"> PayMaya
-                            </button>
-                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="paypal" onclick="selectPaymentMethod('paypal')">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-6 w-6"> PayPal
-                            </button>
-                            <button type="button" class="pay-method-btn btn-secondary flex items-center gap-2" data-method="credit-card" onclick="selectPaymentMethod('credit-card')">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Credit_card_font_awesome.svg" alt="Credit Card" class="h-6 w-6"> Credit Card
-                            </button>
-                        </div>
-                    </div>
-                    <div id="gcash-fields" class="payment-fields mb-3 hidden">
-                        <label for="gcash-number" class="block text-sm">GCash Number:</label>
-                        <input type="text" id="gcash-number" class="input" placeholder="Enter GCash number">
-                    </div>
-                    <div id="paymaya-fields" class="payment-fields mb-3 hidden">
-                        <label for="paymaya-number" class="block text-sm">PayMaya Number:</label>
-                        <input type="text" id="paymaya-number" class="input" placeholder="Enter PayMaya number">
-                    </div>
-                    <div id="paypal-fields" class="payment-fields mb-3 hidden">
-                        <label for="paypal-email" class="block text-sm">PayPal Email:</label>
-                        <input type="email" id="paypal-email" class="input" placeholder="Enter PayPal email">
-                    </div>
-                    <div id="credit-card-fields" class="payment-fields mb-3 hidden">
-                        <label for="credit-card-number" class="block text-sm">Credit Card Number:</label>
-                        <input type="text" id="credit-card-number" class="input" placeholder="Enter credit card number">
-                        <div class="flex gap-2 mt-2">
-                            <div class="flex-1">
-                                <label for="card-expiry" class="block text-sm">Expiry Date:</label>
-                                <input type="text" id="card-expiry" class="input" placeholder="MM/YY">
-                            </div>
-                            <div class="flex-1">
-                                <label for="card-cvc" class="block text-sm">CVC:</label>
-                                <input type="text" id="card-cvc" class="input" placeholder="CVC">
-                            </div>
-                        </div>
-                        <label for="card-name" class="block text-sm mt-2">Cardholder Name:</label>
-                        <input type="text" id="card-name" class="input" placeholder="Name on card">
-                    </div>
-                    <button type="submit" class="btn-primary mt-4 w-full">Add Funds</button>
-                </form>
-            </div>
+    <form id="add-funds-form" onsubmit="event.preventDefault(); addFunds();">
+      <!-- Amount Section -->
+      <div class="mb-5">
+        <label class="block text-sm font-medium mb-2 text-[#F4733B]">Amount (PHP)</label>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="amount-btn border border-[#F4733B] text-[#F4733B] rounded-lg px-4 py-2 hover:bg-[#F4733B] hover:text-white transition" onclick="selectAmount(100)">₱100</button>
+          <button type="button" class="amount-btn border border-[#F4733B] text-[#F4733B] rounded-lg px-4 py-2 hover:bg-[#F4733B] hover:text-white transition" onclick="selectAmount(200)">₱200</button>
+          <button type="button" class="amount-btn border border-[#F4733B] text-[#F4733B] rounded-lg px-4 py-2 hover:bg-[#F4733B] hover:text-white transition" onclick="selectAmount(500)">₱500</button>
+          <button type="button" class="amount-btn border border-[#F4733B] text-[#F4733B] rounded-lg px-4 py-2 hover:bg-[#F4733B] hover:text-white transition" onclick="selectAmount(1000)">₱1,000</button>
+          <input type="number" id="wallet-amount" class="border border-gray-300 rounded-lg px-3 py-2 w-28 focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Custom" min="1">
         </div>
-    </div>
+      </div>
 
+      <!-- Payment Method Section -->
+      <div class="mb-5">
+        <label class="block text-sm font-medium mb-2 text-[#F4733B]">Payment Method</label>
+        <div class="flex flex-wrap gap-3">
+          <button type="button" class="pay-method-btn flex items-center gap-2 border border-[#F4733B] rounded-lg px-4 py-2 text-[#F4733B] hover:bg-[#F4733B] hover:text-white transition" data-method="gcash" onclick="selectPaymentMethod('gcash')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/GCash_logo.svg" alt="GCash" class="h-5 w-5"> GCash
+          </button>
+          <button type="button" class="pay-method-btn flex items-center gap-2 border border-[#F4733B] rounded-lg px-4 py-2 text-[#F4733B] hover:bg-[#F4733B] hover:text-white transition" data-method="paymaya" onclick="selectPaymentMethod('paymaya')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/PayMaya_Logo_2020.png" alt="PayMaya" class="h-5 w-5"> PayMaya
+          </button>
+          <button type="button" class="pay-method-btn flex items-center gap-2 border border-[#F4733B] rounded-lg px-4 py-2 text-[#F4733B] hover:bg-[#F4733B] hover:text-white transition" data-method="paypal" onclick="selectPaymentMethod('paypal')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="h-5 w-5"> PayPal
+          </button>
+          <button type="button" class="pay-method-btn flex items-center gap-2 border border-[#F4733B] rounded-lg px-4 py-2 text-[#F4733B] hover:bg-[#F4733B] hover:text-white transition" data-method="credit-card" onclick="selectPaymentMethod('credit-card')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Credit_card_font_awesome.svg" alt="Credit Card" class="h-5 w-5"> Credit Card
+          </button>
+        </div>
+      </div>
 
+      <!-- Dynamic Payment Fields -->
+      <div id="gcash-fields" class="payment-fields mb-3 hidden">
+        <label for="gcash-number" class="block text-sm text-[#F4733B] mb-1">GCash Number:</label>
+        <input type="text" id="gcash-number" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Enter GCash number">
+      </div>
 
+      <div id="paymaya-fields" class="payment-fields mb-3 hidden">
+        <label for="paymaya-number" class="block text-sm text-[#F4733B] mb-1">PayMaya Number:</label>
+        <input type="text" id="paymaya-number" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Enter PayMaya number">
+      </div>
+
+      <div id="paypal-fields" class="payment-fields mb-3 hidden">
+        <label for="paypal-email" class="block text-sm text-[#F4733B] mb-1">PayPal Email:</label>
+        <input type="email" id="paypal-email" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Enter PayPal email">
+      </div>
+
+      <div id="credit-card-fields" class="payment-fields mb-3 hidden">
+        <label for="credit-card-number" class="block text-sm text-[#F4733B] mb-1">Credit Card Number:</label>
+        <input type="text" id="credit-card-number" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Enter credit card number">
+        <div class="flex gap-2 mt-2">
+          <div class="flex-1">
+            <label for="card-expiry" class="block text-sm text-[#F4733B] mb-1">Expiry Date:</label>
+            <input type="text" id="card-expiry" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="MM/YY">
+          </div>
+          <div class="flex-1">
+            <label for="card-cvc" class="block text-sm text-[#F4733B] mb-1">CVC:</label>
+            <input type="text" id="card-cvc" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="CVC">
+          </div>
+        </div>
+        <label for="card-name" class="block text-sm text-[#F4733B] mt-2 mb-1">Cardholder Name:</label>
+        <input type="text" id="card-name" class="border border-gray-300 rounded-lg px-3 py-2 w-full focus:ring-2 focus:ring-[#F4733B] focus:outline-none" placeholder="Name on card">
+      </div>
+
+      <button type="submit" class="w-full bg-[#F4733B] text-white font-semibold py-2 rounded-lg hover:bg-[#e4642f] transition mt-4">Add Funds</button>
+    </form>
+  </div>
+</div>
+
+<!-- Thank You Message Modal -->
+<div id="thank-you-modal" class="fixed inset-0 bg-black/50 flex items-center justify-center hidden z-50">
+  <div class="bg-white border-2 border-[#F4733B] rounded-2xl shadow-xl p-8 text-center">
+    <h2 class="text-2xl font-bold text-[#F4733B] mb-2">Thank You!</h2>
+    <p class="text-gray-700 mb-4">Your funds have been successfully added to your wallet.</p>
+    <button onclick="closeThankYouModal()" class="bg-[#F4733B] text-white font-semibold px-6 py-2 rounded-lg hover:bg-[#e4642f] transition">Close</button>
+  </div>
+</div>
+
+<script>
+function selectAmount(value) {
+  document.getElementById("wallet-amount").value = value;
+}
+
+function selectPaymentMethod(method) {
+  document.querySelectorAll(".payment-fields").forEach(el => el.classList.add("hidden"));
+  document.getElementById(`${method}-fields`).classList.remove("hidden");
+}
+
+function addFunds() {
+  const amount = parseFloat(document.getElementById("wallet-amount").value);
+  if (isNaN(amount) || amount <= 0) {
+    alert("Please enter a valid amount.");
+    return;
+  }
+
+  const balanceEl = document.getElementById("wallet-balance");
+  const currentBalance = parseFloat(balanceEl.innerText.replace("₱", "")) || 0;
+  balanceEl.innerText = `₱${(currentBalance + amount).toFixed(2)}`;
+
+  closeModal();
+  document.getElementById("thank-you-modal").classList.remove("hidden");
+}
+
+function closeModal() {
+  document.getElementById("buy-token-modal").classList.add("hidden");
+}
+
+function closeThankYouModal() {
+  document.getElementById("thank-you-modal").classList.add("hidden");
+}
 </script>
-    <!-- Removed the original footer from here -->
-    <script>
-        function addFunds() {
-            const amount = parseFloat(document.getElementById('wallet-amount').value);
-            if (isNaN(amount) || amount <= 0) {
-                alert("Please enter a valid amount.");
-                return;
-            }
-            const balanceEl = document.getElementById('wallet-balance');
-            const currentBalance = parseFloat(balanceEl.innerText.replace('₱','')) || 0;
-            balanceEl.innerText = `₱${(currentBalance + amount).toFixed(2)}`;
-            closeModal();
-            alert(`₱${amount.toFixed(2)} added to your e-wallet!`);
-        }
-        // Initialize Lucide icons
-        document.addEventListener("DOMContentLoaded", function() {
-            if (window.lucide) lucide.createIcons();
-        });
-    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
